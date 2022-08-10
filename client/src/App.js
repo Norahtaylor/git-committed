@@ -23,6 +23,9 @@ function App() {
         <Route path="/">
           <h1> page count: {count} </h1>
         </Route>
+          <Route path="/newtest">
+            <h1> new test </h1>
+          </Route>
       </Switch>
       </div>
     </BrowserRouter>
