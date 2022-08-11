@@ -1,38 +1,51 @@
-
+import Login from './components/Login';
+import Homepage from './components/Homepage'
+import NavBar from './components/NavBar'
 import {useState, useEffect} from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
 
 function App() {
-  const [count, setCount] = useState()
+  const [user, setUser] = useState('')
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+    fetch('/me').then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
+
+console.log(user)
+  // function onLogin(user){
+  //   setCurrentUser(user)
+  // }
+
+  function onLogout(){
+    setUser(null)
+  }
 
 
   return (
-    <BrowserRouter>
+    <div> 
+      <NavBar user={user} onLogout={onLogout} />
+  <BrowserRouter>
     <div className='App'>
       <Switch>
-        <Route path="/testing">
-          <h1>i am new info proving heroku push works</h1>
-        </Route>
-        <Route path="/">
-          <h1> page count: {count} </h1>
-        </Route>
-          <Route path="/newtest">
-            <h1> new test </h1>
-          </Route>
-          <Route path="/newtest">
-            <h1> new test </h1>
-          </Route>
-      </Switch>
-      </div>
-    </BrowserRouter>
 
+        <Route exact path="/testing">
+          <h1>testing</h1>
+        </Route>
+        <Route exact path="/">
+            <Homepage setUser={setUser}/>
+        </Route>
+        <Route exact path="/login">
+            <Login setUser={setUser} />
+        </Route>
+      </Switch>
+    </div>
+  </BrowserRouter>
+    </div>
   );
 }
 
