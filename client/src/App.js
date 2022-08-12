@@ -1,6 +1,7 @@
 import Login from './components/Login';
 import Homepage from './components/Homepage'
 import NavBar from './components/NavBar'
+import SwipePage from './components/SwipePage'
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
@@ -16,7 +17,6 @@ function App() {
     })
   }, [])
 
-console.log(user)
   // function onLogin(user){
   //   setCurrentUser(user)
   // }
@@ -28,7 +28,7 @@ console.log(user)
 
   return (
     <div> 
-      <NavBar user={user} onLogout={onLogout} />
+      {/* <NavBar user={user} onLogout={onLogout} /> */}
   <BrowserRouter>
     <div className='App'>
       <Switch>
@@ -41,6 +41,9 @@ console.log(user)
         </Route>
         <Route exact path="/login">
             <Login setUser={setUser} />
+        </Route>
+        <Route exact path = "/swipe">
+          <SwipePage />
         </Route>
       </Switch>
     </div>
