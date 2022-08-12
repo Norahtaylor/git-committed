@@ -25,16 +25,14 @@ function App() {
     setUser(null)
   }
 
-
+console.log(user)
   return (
     <div> 
       {/* <NavBar user={user} onLogout={onLogout} /> */}
   <BrowserRouter>
     <div className='App'>
       <Switch>
-
         <Route exact path="/testing">
-          <h1>testing</h1>
         </Route>
         <Route exact path="/">
             <Homepage setUser={setUser}/>
@@ -43,7 +41,7 @@ function App() {
             <Login setUser={setUser} />
         </Route>
         <Route exact path = "/swipe">
-          <SwipePage />
+          <SwipePage  onLogout={onLogout}/>
         </Route>
       </Switch>
     </div>

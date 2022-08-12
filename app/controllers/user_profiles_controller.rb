@@ -11,10 +11,15 @@ class UserProfilesController < ApplicationController
         render json: user, status: :ok 
     end 
 
+    def create 
+        user = UserProfile.create!(user_params)
+        render json: user 
+    end 
+
     private
 
     def user_params 
-        params.permit(:name, :age, :birthdat, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location)
+        params.permit(:name, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location, :user_account_id)
     end
     
 end

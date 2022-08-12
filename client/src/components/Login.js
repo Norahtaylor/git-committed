@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
+import NavBar from './NavBar';
 
 
 function Login({setUser}) {
@@ -26,10 +27,13 @@ function Login({setUser}) {
         .then((user) => setUser(user))
         setUsername('')
         setPassword('')
+        navigate.push('/swipe')
     }
 
     return(
+        
         <div className='homepage'>
+           
 
             <div className="container" id="container">
                 <div className="form-container ">

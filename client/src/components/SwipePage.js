@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
 import TinderCard from 'react-tinder-card'
 import SwipeCard from './SwipeCard'
+import NavBar from './NavBar'
 
-const SwipePage = () => {
+const SwipePage = ({onLogout}) => {
     const [userProfiles, setUserProfiles] = useState([])
     const [errors, setErrors] = useState()
 
@@ -20,7 +21,7 @@ const SwipePage = () => {
     
     return(
         <div>
-            
+            <NavBar onLogout={onLogout}/>
            <SwipeCard userProfiles={userProfiles} />
         </div>
     )
