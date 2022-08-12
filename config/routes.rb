@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   # login and stay logged in
   post '/login', to: 'sessions#create'
-  # get '/me', to: 'useraccounts#show'
-  get '/me', to: 'user_accounts#show_account'
+
+  get '/me', to: 'user_accounts#show_current'
 
   post '/signup', to: 'user_accounts#create'
 
