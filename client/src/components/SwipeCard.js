@@ -50,13 +50,14 @@ function SwipeCard({userProfiles}) {
     <div>
           <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
           <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-        <h1 className='h1'>React Tinder Card</h1>
+        <h1 className='h1'>Git Committed</h1>
         <div className='cardContainer'>
             {userProfiles.map((user) => 
                 <TinderCard className="swipe" key={user.id} onSwipe={
                     (dir) => swiped(dir, user.name)} onCardLeftScreen={() => outOfFrame(user.name)}>
-                <div style={{backgroundImage: (user.profile_id)}} className='card'>
-                    <div className='cardContent'>
+                <div style={{backgroundImage: (user.profile_photo)}} className='card'>
+                    <div className='cardContent' >
+                        <img src={user.profile_photo}/>
                             Name: {user.name}
                     </div>
                    
@@ -93,6 +94,7 @@ function SwipeCard({userProfiles}) {
  
 
     </div>
+    
   )
 } }
 
