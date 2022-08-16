@@ -2,12 +2,16 @@ import Login from './components/Login';
 import Homepage from './components/Homepage'
 import NavBar from './components/NavBar'
 import SwipePage from './components/SwipePage'
+import MyMatches from './components/MyMatches';
+import MyProfile from './components/MyProfile';
+import CreateNewProfile from './components/CreateNewProfile';
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
 
 function App() {
   const [user, setUser] = useState('')
+  const [matches, setMatches] = useState([])
 
   useEffect(() => {
     fetch('/me').then((res) => {
@@ -25,14 +29,28 @@ function App() {
     setUser(null)
   }
 
+  //Fetch matches 
+
+  useEffect(() => {
+    fetch('/matches')
+      .then(res => res.json())
+      .then(data => {
+        setMatches(data)
+      })
+  }, [])
+
 console.log(user)
+
   return (
     <div> 
-      {/* <NavBar user={user} onLogout={onLogout} /> */}
   <BrowserRouter>
     <div className='App'>
       <Switch>
-        <Route exact path="/testing">
+        <Route exact path="/myprofile">
+          <MyProfile />
+        </Route>
+        <Route exact path="/createProfile">
+          <CreateNewProfile />
         </Route>
         <Route exact path="/">
             <Homepage setUser={setUser}/>
@@ -41,7 +59,10 @@ console.log(user)
             <Login setUser={setUser} />
         </Route>
         <Route exact path = "/swipe">
-          <SwipePage  onLogout={onLogout}/>
+          <SwipePage  currentUser = {user} onLogout={onLogout}/>
+        </Route>
+        <Route exact path= '/mymatches'>
+          <MyMatches setMatches={setMatches} matches={matches} />
         </Route>
       </Switch>
     </div>

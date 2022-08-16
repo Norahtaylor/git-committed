@@ -33,6 +33,7 @@ class UserAccountsController < ApplicationController
     def show_current
         user = UserAccount.find_by(id: session[:user_id])
         render json: user
+     
     end 
 
 

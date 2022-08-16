@@ -43,7 +43,6 @@ const Homepage = ({setUser}) =>  {
 
     return (
         <div className='homepage'>
-        <h1 className='Homepage-header'>Git Committed</h1>
 
             <div className="container" id="container">
                 <div className="form-container ">

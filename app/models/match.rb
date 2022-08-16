@@ -1,3 +1,5 @@
 class Match < ApplicationRecord
-    has_many :user_accounts
+    belongs_to :user_account
+
+    # belongs_to :user_profile
 end
