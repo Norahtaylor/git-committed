@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
 
     def index 
         matches = Match.all
-        render json: matches, status: :ok
+        render json: matches.to_json(include: [:requestor, :receiver]) 
     end 
 
     def create 
@@ -13,8 +13,8 @@ class MatchesController < ApplicationController
     def my_matches 
         matches = Match.where(receiver_id: session[:user_id], accepted: true).or(Match.where(requestor_id: session[:user_id], accepted: true))
 
-       render json: matches
-      
+        render json: matches.to_json(:include => [:requestor, :receiver]) 
+ 
     end
 
     private 
