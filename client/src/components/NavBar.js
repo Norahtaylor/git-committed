@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { useHistory, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useHistory } from "react-router-dom";
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -8,10 +8,10 @@ import Fade from '@mui/material/Fade';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
-
 const NavBar = ({onLogout}) => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -19,13 +19,13 @@ const NavBar = ({onLogout}) => {
         setAnchorEl(null);
     };
 
-    let navigate = useHistory()
+    let history = useHistory()
 
     function handleLogout() {
         fetch('./logout', {
             method: 'DELETE',
         }).then(() => onLogout())
-        navigate.push('./login')
+        history.push('./login')
     }
 
     return (
@@ -51,24 +51,54 @@ const NavBar = ({onLogout}) => {
                 TransitionComponent={Fade}
             >
 
-                <MenuItem href="/myprofile" className='menu-button' onClick={handleClose}>
-                    <Link className='menu-button' to="/myprofile" >
-                        My Profile </Link>
-                   </MenuItem>
-                <MenuItem className='menu-button' onClick={handleClose}>
-                    <Link to="/createprofile" >
-                        Create Profile </Link>
-                </MenuItem>
-                <MenuItem className='menu-button' onClick={handleClose}>
-                    <Link to="/mymatches" > My Matches </Link>
-                </MenuItem>
-                <MenuItem className='menu-button' onClick={handleClose}>
-                    <Link to="/swipe" >Swipe </Link></MenuItem>
-                <MenuItem className='menu-button' onClick={handleClose}>
-                    <Link to="/login">Login </Link></MenuItem>
-                <MenuItem className='menu-button' onClick={handleLogout}>Logout</MenuItem>
-            </Menu>
+                    <a 
+                        className='menu-button'
+                        href="/myprofile"
+                        onClick={() => history.push('/myprofile')}
+                    > 
+                    My Profile 
+                    </a>
+                    <a 
+                        className='menu-button'
+                        href="/createprofile" 
+                        onClick={() => history.push('/createprofile')}
+                    >
+                    Create Profile
+                    </a>
+
+                    <a 
+                        onClick={() => history.push('/mymatches')} 
+                        href='/mymatches'
+                        className='menu-button'
+                    > 
+                    My Matches
+                    </a>
+                
+                    <a 
+                        onClick={() => history.push('/swipe')}
+                        href="/swipe"
+                        className='menu-button'
+                    >
+                    Find love
+                    </a>
+             
+                    <a 
+                        onClick={() => history.push('/login')} 
+                        href="/login"
+                        className='menu-button'
+                    >Login
+                    </a> 
+                
+             <div>
+                <Button 
+                    onClick={handleLogout}
+                >
+                    Logout 
+                </Button>
+            </div> 
+         </Menu>
         </div>
+    
     );
 }
 

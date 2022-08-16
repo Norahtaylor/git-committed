@@ -6,10 +6,10 @@ class UserAccountsController < ApplicationController
         render json: user
     end 
 
-    def show 
-        user = UserAccount.find_by(id: params[:id])
-        render json: user, status: :ok
-    end 
+    # def show 
+    #     user = UserAccount.find_by(id: params[:id])
+    #     render json: user, status: :ok
+    # end 
 
     def destroy 
         user = UserAccount.find_by(id: params[:id])

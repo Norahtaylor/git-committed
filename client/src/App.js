@@ -10,8 +10,7 @@ import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
 
 function App() {
-  const [user, setUser] = useState('')
-  const [matches, setMatches] = useState([])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     fetch('/me').then((res) => {
@@ -20,6 +19,8 @@ function App() {
       }
     })
   }, [])
+
+  console.log("currentUser", user)
 
   // function onLogin(user){
   //   setCurrentUser(user)
@@ -31,18 +32,21 @@ function App() {
 
   //Fetch matches 
 
-  useEffect(() => {
-    fetch('/matches')
-      .then(res => res.json())
-      .then(data => {
-        setMatches(data)
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch('/matches')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setMatches(data)
+  //     })
+  // }, [])
 
-console.log(user)
 
   return (
     <div> 
+      {user && user.username ? 
+        <NavBar /> 
+      : 
+      null}
   <BrowserRouter>
     <div className='App'>
       <Switch>
@@ -59,10 +63,10 @@ console.log(user)
             <Login setUser={setUser} />
         </Route>
         <Route exact path = "/swipe">
-          <SwipePage  currentUser = {user} onLogout={onLogout}/>
+          <SwipePage currentUser={user} onLogout={onLogout}/>
         </Route>
         <Route exact path= '/mymatches'>
-          <MyMatches setMatches={setMatches} matches={matches} />
+          <MyMatches currentUser={user}  />
         </Route>
       </Switch>
     </div>

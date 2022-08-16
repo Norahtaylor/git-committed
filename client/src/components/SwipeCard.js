@@ -6,7 +6,7 @@ import { useRouteMatch } from 'react-router-dom'
 import SwipeRightIcon from '@mui/icons-material/SwipeRight';
 
 
-function SwipeCard({userAccounts, currentUser}) {
+function SwipeCard({userProfiles, currentUser}) {
     const [lastDirection, setLastDirection] = useState()
     //this is saying which direction someone swiped. 
 
@@ -37,7 +37,7 @@ function SwipeCard({userAccounts, currentUser}) {
    const swipeDirection = (dir, id) => {
     console.log("i swiped:", dir)
     console.log(id)
-    console.log("currrnet user", currentUser.id)
+    console.log("current user", currentUser.id)
 
     if(dir === 'right')
         fetch('/matches', {
@@ -49,7 +49,6 @@ function SwipeCard({userAccounts, currentUser}) {
                 requestor_id: currentUser.id,
                 receiver_id: id,
                 accepted: true,
-                user_account_id: currentUser.id
             })
         })  
         
@@ -70,20 +69,6 @@ function SwipeCard({userAccounts, currentUser}) {
   
    }
         
-    // function swipeRight() {
-    //     fetch('/matches', {
-    //         method: "POST", 
-    //         headers: {
-    //             "Content-Type": "application/json", 
-    //         }, 
-    //         body: JSON.stringify({
-    //             requestor_id: currentUser.id,
-    //             receiver_id: userProfiles.user_account_id
-    //         })
-    //     })
-
-    // }
-    //matches POST request to 
 
     //logic for determining swipe left or right to make a match
     //right swipe make post request with accepted: true
@@ -93,11 +78,11 @@ function SwipeCard({userAccounts, currentUser}) {
     return (
         <div className="card-center">
         
-            {/* <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
+            <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             <h1>Git Committed</h1>
             <div className='cardContainer'>
-                {userAccounts.map((user) =>
+                {userProfiles.map((user) =>
                     <TinderCard className='swipe' 
                     key={user.id} 
                     id={user.id}
@@ -105,12 +90,12 @@ function SwipeCard({userAccounts, currentUser}) {
                     onCardLeftScreen={(dir) => swipeDirection(dir, user.id)}
                     >
                         <div style={{ backgroundImage: 'url(' + user.profile_photo + ')' }} className='card'>
-                            <h2>{user.name}, {user.age}</h2>
+                            <h2>{user.first_name}, {user.age}</h2>
                         </div>
                     </TinderCard>
-                )} */}
+                )} 
                 
-            {/* </div> */}
+            </div>
             <SwipeRightIcon className="swipe-right"/>
             {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
         </div>

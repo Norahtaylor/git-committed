@@ -1,5 +1,5 @@
 class UserProfile < ApplicationRecord
-    belongs_to :user_account
+    # belongs_to :user_account
 
     # has_many :receivers, foreign_key: :receiver_id, class_name: "Match"
     # has_many :requestors, through: :receivers 

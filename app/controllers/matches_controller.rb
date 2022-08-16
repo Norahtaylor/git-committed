@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
 
     def index 
         matches = Match.all
-        render json: matches.to_json(include: [:requestor, :receiver]) 
+        render json: matches.to_json(include: [:requestor, :receiver])
     end 
 
     def create 
@@ -20,6 +20,6 @@ class MatchesController < ApplicationController
     private 
 
     def match_params
-        params.permit(:receiver_id, :requestor_id, :accepted, :status, :user_account_id)
+        params.permit(:receiver_id, :requestor_id, :accepted, :status)
     end 
 end
