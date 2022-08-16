@@ -1,5 +1,5 @@
 class UserAccount < ApplicationRecord
-    has_one :user_profile, dependent: :destroy
+    # has_one :user_profile, dependent: :destroy
     
     validates :username, uniqueness: true
     validates :password, presence: true

@@ -14,7 +14,7 @@ const SwipePage = ({onLogout, currentUser}) => {
         if (!currentUser) return
         // return means stop excuting this function if currentUser is null. this code makes the currentUser profile not flash on the screen
 
-        fetch('/user_profiles')
+        fetch('/user_accounts')
         .then(res => {
             if (res.ok) {
                 res.json()
@@ -25,7 +25,7 @@ const SwipePage = ({onLogout, currentUser}) => {
 
                     console.log("current user id: ",currentUser.id)
                     console.log("swipe card id:", data.id)
-
+                    console.log(data)
                     setUserProfiles(filtered) }) }
             else { 
                 res.json().then(data => console.log(data.errors))

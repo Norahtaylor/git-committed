@@ -3,7 +3,7 @@ class UserAccountsController < ApplicationController
 
     def index 
         user = UserAccount.all
-        render json: user, status: :ok
+        render json: user
     end 
 
     def show 
@@ -26,14 +26,13 @@ class UserAccountsController < ApplicationController
 
     def update
         user = UserAccount.find(params[:id])
-        user.update(user_params)
+        user.update!(user_params)
         render json: user, status: :ok
     end
 
     def show_current
         user = UserAccount.find_by(id: session[:user_id])
         render json: user
-     
     end 
 
 
@@ -44,6 +43,6 @@ private
     end 
 
     def user_params
-        params.permit(:first_name, :last_name, :username, :password)
+        params.permit(:first_name, :last_name, :username, :password, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location)
     end 
 end

@@ -6,7 +6,7 @@ import { useRouteMatch } from 'react-router-dom'
 import SwipeRightIcon from '@mui/icons-material/SwipeRight';
 
 
-function SwipeCard({userProfiles, currentUser}) {
+function SwipeCard({userAccounts, currentUser}) {
     const [lastDirection, setLastDirection] = useState()
     //this is saying which direction someone swiped. 
 
@@ -93,24 +93,24 @@ function SwipeCard({userProfiles, currentUser}) {
     return (
         <div className="card-center">
         
-            <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
+            {/* <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
             <h1>Git Committed</h1>
             <div className='cardContainer'>
-                {userProfiles.map((user) =>
+                {userAccounts.map((user) =>
                     <TinderCard className='swipe' 
                     key={user.id} 
                     id={user.id}
                     // onSwipe={() => swiped(user.name)} 
-                    onCardLeftScreen={(dir) => swipeDirection(dir, user.user_account_id)}
+                    onCardLeftScreen={(dir) => swipeDirection(dir, user.id)}
                     >
                         <div style={{ backgroundImage: 'url(' + user.profile_photo + ')' }} className='card'>
                             <h2>{user.name}, {user.age}</h2>
                         </div>
                     </TinderCard>
-                )}
+                )} */}
                 
-            </div>
+            {/* </div> */}
             <SwipeRightIcon className="swipe-right"/>
             {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
         </div>
