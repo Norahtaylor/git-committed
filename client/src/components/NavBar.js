@@ -50,7 +50,7 @@ const NavBar = ({onLogout}) => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-
+                <MenuItem>
                     <a 
                         className='menu-button'
                         href="/myprofile"
@@ -58,6 +58,8 @@ const NavBar = ({onLogout}) => {
                     > 
                     My Profile 
                     </a>
+                </MenuItem>
+                <MenuItem>
                     <a 
                         className='menu-button'
                         href="/createprofile" 
@@ -65,7 +67,8 @@ const NavBar = ({onLogout}) => {
                     >
                     Create Profile
                     </a>
-
+                </MenuItem>
+                <MenuItem>
                     <a 
                         onClick={() => history.push('/mymatches')} 
                         href='/mymatches'
@@ -73,7 +76,8 @@ const NavBar = ({onLogout}) => {
                     > 
                     My Matches
                     </a>
-                
+                </MenuItem>
+                <MenuItem>
                     <a 
                         onClick={() => history.push('/swipe')}
                         href="/swipe"
@@ -81,14 +85,16 @@ const NavBar = ({onLogout}) => {
                     >
                     Find love
                     </a>
-             
+                </MenuItem>
+                <MenuItem>
                     <a 
                         onClick={() => history.push('/login')} 
                         href="/login"
                         className='menu-button'
-                    >Login
+                    >
+                        Login
                     </a> 
-                
+                </MenuItem>
              <div>
                 <Button 
                     onClick={handleLogout}
