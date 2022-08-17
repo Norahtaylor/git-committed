@@ -5,6 +5,8 @@ import SwipePage from './components/SwipePage'
 import MyMatches from './components/MyMatches';
 import MyProfile from './components/MyProfile';
 import CreateNewProfile from './components/CreateNewProfile';
+import CreateNewProfile2 from './components/CreateNewProfile2';
+import CreateNewProfile3 from './components/CreateNewProfile3';
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
@@ -29,17 +31,6 @@ function App() {
   function onLogout(){
     setUser(null)
   }
-
-  //Fetch matches 
-
-  // useEffect(() => {
-  //   fetch('/matches')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setMatches(data)
-  //     })
-  // }, [])
-
 
   return (
     <div> 
@@ -67,6 +58,12 @@ function App() {
         </Route>
         <Route exact path= '/mymatches'>
           <MyMatches currentUser={user}  />
+        </Route>
+        <Route exact path='/step2'>
+            <CreateNewProfile2 />
+        </Route>
+        <Route exact path='/step3'>
+          <CreateNewProfile3/>
         </Route>
       </Switch>
     </div>

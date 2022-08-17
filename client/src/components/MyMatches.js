@@ -8,10 +8,6 @@ export default function MyMatches({currentUser}) {
 
 console.log(currentUser)
 
-//    fetch('/mymatches')
-//     .then(res => res.json())
-//     .then(matches => setMatches(matches))
-
 useEffect(() => {
     fetch('/mymatches')
         .then(res => res.json())
@@ -22,9 +18,6 @@ console.log(matches)
     
     return (
         <div>
-
-
-            {/* <NavBar /> */}
             <MatchCard matches={matches}/>
         </div>
     );

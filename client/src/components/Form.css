@@ -1,0 +1,97 @@
+.button-create-profile{
+    border-radius: 20px;
+        border: 1px solid #FF4B2B;
+        background-color: #FF4B2B;
+        color: #FFFFFF;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 10px 35px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
+}
+
+.form-box {
+    min-width: 100%;
+    height: 100vh;
+    /* border: dotted #F55A00 5vw; */
+    /* border: 1px solid red; */
+    margin: 0vw;
+    padding: 5vw;
+    position: relative;
+    display: block;
+    text-align: center;
+    /* position:relative for .prevBtn and .nextBtn position:absolute; */
+}
+
+.form-box-h5{
+    font-size: 35px;
+    text-align: center;
+    color: #FF4B2B;
+    margin: 0 0 .5vh 0;
+        
+}
+
+.label {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 0 2vh 0;
+}
+
+.form-box input, textarea {
+    display: block;
+    width: 100%;
+    /* padding: .150rem .8rem .50rem .8rem;   */
+    padding: 50px 50px 0px 50px;
+    margin: .5vw 0;
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.form-box textarea {
+    height: 15vh;
+}
+
+.nextBtn, .prevBtn {
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    border: 0;
+    display: inline-block;
+    width: 20%;
+    height: 2rem;
+    
+}
+
+.prevBtn {
+    margin: 1rem 0 1rem 0;
+    border-radius: 20px 0 0 20px;
+}
+
+.nextBtn {
+    margin: 1rem 0 1rem 8rem;
+    border-radius: 0 20px 20px 0;
+}
+
+.nextBtn:hover,
+.prevBtn:hover {
+    background-color: rgb(245, 245, 78);
+    transition: 1s background ease;
+}
+
+.field1{
+        position: relative;
+        text-align: center;
+        font-size: 15px;
+
+}

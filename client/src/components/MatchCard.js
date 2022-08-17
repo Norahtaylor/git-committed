@@ -10,10 +10,15 @@ function MatchCard({matches}) {
     
    
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
 
-          <ImageList sx={{ width: 500, height: 450 }}>
-              <ImageListItem key="Subheader" cols={2}>
+    }}>
+
+          <ImageList sx={{ width: 900, height: 450 }}>
+              <ImageListItem key="header" cols={5}>
                   <ListSubheader component="div"
                   >
                     My Matches
