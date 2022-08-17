@@ -7,6 +7,7 @@ import MyProfile from './components/MyProfile';
 import CreateNewProfile from './components/CreateNewProfile';
 import CreateNewProfile2 from './components/CreateNewProfile2';
 import CreateNewProfile3 from './components/CreateNewProfile3';
+import Practice from './components/Practice'
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
 
@@ -59,12 +60,15 @@ function App() {
         <Route exact path= '/mymatches'>
           <MyMatches currentUser={user}  />
         </Route>
-        <Route exact path='/step2'>
+        {/* <Route exact path='/step2'>
             <CreateNewProfile2 />
         </Route>
         <Route exact path='/step3'>
           <CreateNewProfile3/>
-        </Route>
+        </Route> */}
+          <Route exact path='/practice'>
+            <Practice />
+          </Route>
       </Switch>
     </div>
   </BrowserRouter>

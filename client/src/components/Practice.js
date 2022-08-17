@@ -19,40 +19,44 @@ const MenuProps = {
 };
 
 const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
+    'Male',
+    'Female',
+    'Trans',
+    'Non-Binary',
+    'Everyone',
     'Miriam Wagner',
     'Bradley Wilkerson',
     'Virginia Andrews',
     'Kelly Snyder',
 ];
 
-function getStyles(name, personName, theme) {
+function getStyles(name, interestIn, theme) {
     return {
         fontWeight:
-            personName.indexOf(name) === -1
+            interestIn.indexOf(name) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
     };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelect({ newCount }) {
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
+    const [interestedIn, setInterestedIn] = React.useState([]);
 
     const handleChange = (event) => {
         const {
             target: { value },
         } = event;
-        setPersonName(
+        setInterestedIn(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        console.log(interestedIn)
+        console.log("value", value)
     };
+ 
+    console.log(newCount)
+
 
     return (
         <div>
@@ -62,7 +66,7 @@ export default function MultipleSelect() {
                     labelId="demo-multiple-name-label"
                     id="demo-multiple-name"
                     multiple
-                    value={personName}
+                    value={interestedIn}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
@@ -71,7 +75,7 @@ export default function MultipleSelect() {
                         <MenuItem
                             key={name}
                             value={name}
-                            style={getStyles(name, personName, theme)}
+                            style={getStyles(name, interestedIn, theme)}
                         >
                             {name}
                         </MenuItem>

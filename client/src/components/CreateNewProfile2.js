@@ -8,19 +8,21 @@ import CreateNewProfile3 from './CreateNewProfile3'
 import TextField from '@mui/material/TextField';
 import Form from './Form.css'
 
-function CreateNewProfile2({count, setCount}) {
+function CreateNewProfile2({ count, setCount, handleNextClick }) {
+    
 console.log(count)
+console.log(handleNextClick)
     return (
         <>
         <div>test</div>
         <div className='form-box'>
-            <h5 className='form-box-h5'> Steps: {count} of 4
-            </h5>
+            {/* <h5 className='form-box-h5'> Steps: {count} of 4 */}
+            {/* </h5> */}
             <form>
-                {count === 2 ? (  
+               
                     <div className='field1'>
                         <label className='label'>
-                            Create Your Profile
+                           Step 2
                         </label>
                         <FormControl>
                             <InputLabel htmlFor='my-input' >
@@ -67,18 +69,14 @@ console.log(count)
                         <button
                             className="nextBtn"
                             type="submit"
-                            onClick={() => setCount(count + 1)}
+                                onClick={handleNextClick}
                         >
                             NEXT
                         </button>
 
                     </div>
-                ) : null}
-                <div>
-                    {count === 3 ?
-                        <CreateNewProfile3 count={count} /> : null
-                    }
-                </div>
+               
+              
 
             </form>
         </div>
