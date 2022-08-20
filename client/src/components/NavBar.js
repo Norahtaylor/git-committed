@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -8,7 +8,8 @@ import Fade from '@mui/material/Fade';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
-const NavBar = ({onLogout}) => {
+const NavBar = ({ onLogout }) => {
+    const history = useHistory()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -19,14 +20,16 @@ const NavBar = ({onLogout}) => {
         setAnchorEl(null);
     };
 
-    let history = useHistory()
 
     function handleLogout() {
         fetch('./logout', {
             method: 'DELETE',
         }).then(() => onLogout())
-        history.push('./login')
+        // .then(history.push('/login'))
     }
+
+
+
 
     return (
 
@@ -52,21 +55,24 @@ const NavBar = ({onLogout}) => {
             >
                 <MenuItem>
                     <a 
+                    
+                        onClick={() => history.push('/myprofile')}
                         className='menu-button'
                         href="/myprofile"
-                        onClick={() => history.push('/myprofile')}
+                        
                     > 
                     My Profile 
                     </a>
                 </MenuItem>
-                <MenuItem>
-                    <a 
+                <MenuItem >
+                     <a 
+                        onClick={() => history.push('/createprofile')}
                         className='menu-button'
                         href="/createprofile" 
-                        onClick={() => history.push('/createprofile')}
-                    >
+                   
+                    > 
                     Create Profile
-                    </a>
+                     </a> 
                 </MenuItem>
                 <MenuItem>
                     <a 
@@ -75,6 +81,24 @@ const NavBar = ({onLogout}) => {
                         className='menu-button'
                     > 
                     My Matches
+                    </a>
+                </MenuItem>
+                <MenuItem>
+                    <a
+                        onClick={() => history.push('/pendingapproval')}
+                        href="/pendingapproval"
+                        className='menu-button'
+                    >
+                        Pending Your Approval
+                    </a>
+                </MenuItem>
+                <MenuItem>
+                    <a
+                        onClick={() => history.push('/pendingrequests')}
+                        href="/pendingrequests"
+                        className='menu-button'
+                    >
+                        Your Match Requests
                     </a>
                 </MenuItem>
                 <MenuItem>
@@ -97,7 +121,7 @@ const NavBar = ({onLogout}) => {
                 </MenuItem>
              <div>
                 <Button 
-                    onClick={handleLogout}
+                    onClick={() =>handleLogout()}
                 >
                     Logout 
                 </Button>

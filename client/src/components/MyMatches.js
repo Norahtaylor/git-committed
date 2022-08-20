@@ -1,12 +1,15 @@
 import {useEffect, useState} from 'react';
 import MatchCard from './MatchCard';
 import NavBar from './NavBar';
+import PendingRequests from './PendingRequestCard';
 
 
 export default function MyMatches({currentUser}) {
     const [matches, setMatches] = useState([])
+    const [errors, setErrors] = useState()
 
-console.log(currentUser)
+ 
+console.log("user", currentUser)
 
 useEffect(() => {
     fetch('/mymatches')

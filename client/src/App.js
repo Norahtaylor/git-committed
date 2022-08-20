@@ -5,15 +5,16 @@ import SwipePage from './components/SwipePage'
 import MyMatches from './components/MyMatches';
 import MyProfile from './components/MyProfile';
 import CreateNewProfile from './components/CreateNewProfile';
-import CreateNewProfile2 from './components/CreateNewProfile2';
-import CreateNewProfile3 from './components/CreateNewProfile3';
-import Practice from './components/Practice'
+import PendingApproval from './components/PendingApproval';
+import PendingRequests from './components/PendingRequests';
 import {useState, useEffect} from 'react';
-import { Switch, Router, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Router, Route, BrowserRouter,useHistory } from "react-router-dom";
+import MatchCard from './components/MatchCard';
 
 
 function App() {
   const [user, setUser] = useState({})
+  const history = useHistory()
 
   useEffect(() => {
     fetch('/me').then((res) => {
@@ -23,55 +24,66 @@ function App() {
     })
   }, [])
 
+  //when i go to my matches it loses the currentUser 
   console.log("currentUser", user)
 
-  // function onLogin(user){
-  //   setCurrentUser(user)
-  // }
+  function onLogin(user){
+    setUser(user)
+  }
 
   function onLogout(){
     setUser(null)
+
   }
+
+    // if(!user) {
+    //   history.push('/login')
+    //   return <Login />}
 
   return (
     <div> 
       {user && user.username ? 
-        <NavBar /> 
+        <NavBar onLogout={onLogout}/> 
       : 
       null}
+
   <BrowserRouter>
     <div className='App'>
       <Switch>
         <Route exact path="/myprofile">
-          <MyProfile />
+            <MyProfile user={user} setUser={setUser} />
         </Route>
         <Route exact path="/createProfile">
-          <CreateNewProfile />
+            <CreateNewProfile setUser={setUser} currentUser={user} />
         </Route>
         <Route exact path="/">
             <Homepage setUser={setUser}/>
         </Route>
+        
         <Route exact path="/login">
-            <Login setUser={setUser} />
+            <Login 
+            user={user}
+            onLogin={onLogin} setUser={setUser} />
         </Route>
         <Route exact path = "/swipe">
-          <SwipePage currentUser={user} onLogout={onLogout}/>
+          <SwipePage currentUser={user}/>
         </Route>
-        <Route exact path= '/mymatches'>
+
+        <Route exact path= "/mymatches">
           <MyMatches currentUser={user}  />
         </Route>
-        {/* <Route exact path='/step2'>
-            <CreateNewProfile2 />
+            <Route exact path="/pendingapproval">
+              <PendingApproval currentUser={user} />
         </Route>
-        <Route exact path='/step3'>
-          <CreateNewProfile3/>
-        </Route> */}
-          <Route exact path='/practice'>
-            <Practice />
-          </Route>
+        <Route exact path='/pendingrequests'> 
+            <PendingRequests currentUser={user} />
+        </Route>
+
+        
       </Switch>
     </div>
   </BrowserRouter>
+
     </div>
   );
 }

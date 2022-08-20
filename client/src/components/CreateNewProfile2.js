@@ -16,69 +16,90 @@ console.log(handleNextClick)
         <>
         <div>test</div>
         <div className='form-box'>
-            {/* <h5 className='form-box-h5'> Steps: {count} of 4 */}
-            {/* </h5> */}
-            <form>
-               
-                    <div className='field1'>
-                        <label className='label'>
-                           Step 2
-                        </label>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Your Name </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Name potential matches will see.</FormHelperText>
-                        </FormControl>
-
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Age </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>How old are you?</FormHelperText>
-                        </FormControl>
-                        <br></br>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Neighborhood </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Where do you live?</FormHelperText>
-                        </FormControl>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Education </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Where did you go to school or coding bootcamp?</FormHelperText>
-                        </FormControl>
-                        <br ></br>
-                        <button
-                            className='button-create-profile'
-                            type="submit"
+          
+                <div className='field1'>
+                    <label className='label'>
+                        Let's add some details
+                    </label>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Birthday</InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="birthday"
+                            value={form.birthday}
+                            onChange={updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
                         >
-                            Submit
-                        </button>
-                        <br>
-                        </br>
-                        <button
-                            className="prevBtn"
-                            type="submit"
-                            onClick={() => setCount(count - 1)}
-                        >
-                            PREV
-                        </button>
-                        <button
-                            className="nextBtn"
-                            type="submit"
-                                onClick={handleNextClick}
-                        >
-                            NEXT
-                        </button>
+                            When's your birthday?
+                        </FormHelperText>
+                    </FormControl>
 
-                    </div>
-               
-              
-
-            </form>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Education </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="education"
+                            value={form.education}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
+                        >
+                            Where did you go to school or coding bootcamp?</FormHelperText>
+                    </FormControl>
+                    <br></br>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input'
+                        >
+                            Tell us about yourself </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="bio"
+                            value={form.bio}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
+                        >
+                            This bio will be displayed to potential matches
+                        </FormHelperText>
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Insert photo URL </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="photo"
+                            value={form.photo}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
+                        >
+                            Add a profile photo</FormHelperText>
+                    </FormControl>
+                    <br></br>
+                    <button
+                        className="prevBtn"
+                        type="button"
+                        onClick={(() =>
+                            setCount(count - 1))
+                        }
+                    >
+                        PREV
+                    </button>
+                    <button
+                        className="nextBtn"
+                        type="button"
+                        onClick={() => handleNextClick()}
+                    >
+                        NEXT
+                    </button>
+                </div>
         </div>
         </>
     )

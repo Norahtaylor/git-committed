@@ -6,37 +6,44 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
-function MatchCard({matches}) {
-    
+function MatchCard({matches, currentUser}) {
+  console.log(currentUser)
    
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+    <div>
+      <div >
+        <h5 className='form-box-h5'
+        > Love is in the air! </h5>
+        <label className='label'>
+          🎉 time to get your flirt on 🎉
+        </label>
+      </div>
 
-    }}>
-
-          <ImageList sx={{ width: 900, height: 450 }}>
-              <ImageListItem key="header" cols={5}>
-                  <ListSubheader component="div"
-                  >
-                    My Matches
-                  </ListSubheader>
+          <ImageList 
+            sx={{ width: 900, height: 700, 
+              borderRadius: "5px",
+             borderColor: "#EB0F59" }}
+          >
+              <ImageListItem key="header" 
+                
+                cols={2}>
+                
               </ImageListItem>
               {matches.length > 0 ? matches.map((match) => ( 
                 
-                  <ImageListItem key={match.id}
+                  <ImageListItem 
+                  
+                  key={match.id}
                   >
                       <img
-                          src={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format`}
-                          srcSet={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                          alt={match.receiver.name}
+                    src={`${match.requestor.profile_photo}?w=248&fit=crop&auto=format`}
+                          srcSet={`${match.requestor.profile_photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    alt={match.requestor.name}
                           loading="lazy"
                       />
                       <ImageListItemBar
-                          title={`${match.receiver.first_name}, ${match.receiver.age}`}
-                          subtitle={match.receiver.bio}
+                    title={`${match.requestor.first_name}, ${match.requestor.age}`}
+                    subtitle={match.requestor.bio}
                          
                         //   actionIcon={
                         //       <IconButton

@@ -3,8 +3,7 @@ import { useRef, useMemo, useState } from 'react'
 import GitCommittedCard from './GitCommittedCard'
 import TinderCard from 'react-tinder-card'
 import { useRouteMatch } from 'react-router-dom'
-import SwipeRightIcon from '@mui/icons-material/SwipeRight';
-
+import SwiperIcon from './SwiperIcon'
 
 function SwipeCard({userProfiles, currentUser}) {
     const [lastDirection, setLastDirection] = useState()
@@ -16,8 +15,6 @@ function SwipeCard({userProfiles, currentUser}) {
         console.log('direction:', {direction})
     }
 
-    //direction says right or left, so if the direction === 'right' do this thing
-    //if the direction === 'left' do another thing
     //how to remove the user that someone swiped on, do i need another column that saves them as already swiped on?
 
     //record that they swiped yes or no, query filtered that were not swiped on. exclude current user. backend. user 1 swiped on user 2 , true or false. 
@@ -29,14 +26,9 @@ function SwipeCard({userProfiles, currentUser}) {
         //why is id coming through on this function and not 
     }
     
-    // const userId = userProfiles.map((user) => {
-    //   user.id})
-
-   
 
    const swipeDirection = (dir, id) => {
     console.log("i swiped:", dir)
-    console.log(id)
     console.log("current user", currentUser.id)
 
     if(dir === 'right')
@@ -48,7 +40,7 @@ function SwipeCard({userProfiles, currentUser}) {
             body: JSON.stringify({
                 requestor_id: currentUser.id,
                 receiver_id: id,
-                accepted: true,
+                status: 'pending',
             })
         })  
         
@@ -76,16 +68,22 @@ function SwipeCard({userProfiles, currentUser}) {
     //left swipe POST request with accepted: false 
 
     return (
-        <div className="card-center">
-        
+        <>
+        <h1 className='h1-card'
+        >
+            Git Committed</h1>
+            <div className="card-center"
+            >
+            
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-            <h1>Git Committed</h1>
+           
             <div className='cardContainer'>
                 {userProfiles.map((user) =>
                     <TinderCard className='swipe' 
                     key={user.id} 
                     id={user.id}
+                    preventSwipe={['up', 'down']}
                     // onSwipe={() => swiped(user.name)} 
                     onCardLeftScreen={(dir) => swipeDirection(dir, user.id)}
                     >
@@ -96,9 +94,11 @@ function SwipeCard({userProfiles, currentUser}) {
                 )} 
                 
             </div>
-            <SwipeRightIcon className="swipe-right"/>
+            <SwiperIcon />
+
             {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
         </div>
+        </>
     )
 } 
 

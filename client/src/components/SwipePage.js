@@ -8,13 +8,13 @@ const SwipePage = ({onLogout, currentUser}) => {
     const [userProfiles, setUserProfiles] = useState([])
     const [errors, setErrors] = useState()
    
-
+console.log(currentUser)
     //Fetch user_profiles for swipe cards
     useEffect(() => {
         if (!currentUser) return
         // return means stop excuting this function if currentUser is null. this code makes the currentUser profile not flash on the screen
 
-        fetch('/user_accounts')
+        fetch('/findlove')
         .then(res => {
             if (res.ok) {
                 res.json()
