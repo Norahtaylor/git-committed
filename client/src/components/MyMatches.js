@@ -21,7 +21,7 @@ console.log(matches)
     
     return (
         <div>
-            <MatchCard matches={matches}/>
+            <MatchCard user={currentUser} matches={matches}/>
         </div>
     );
 }

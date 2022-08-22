@@ -92,6 +92,8 @@ function PendingRequests({requests, currentUser}) {
                 alt={match.receiver.name}
                 loading="lazy"
               />
+
+              
               {click ? <ImageListItemBar
                 onClick={handleInfoClick}
                 title={`"${match.receiver.bio}"`}
