@@ -46,7 +46,7 @@ function PendingApprovalCard({ pendingApproval, user }) {
           >  Matches Pending Your Approval </h5>
           <label className='label'>
               They swiped right on you!
-              <br></br>Swipe right to match with them or left to say goodbye.
+            
           </label>
             <div className="card-center"
             >

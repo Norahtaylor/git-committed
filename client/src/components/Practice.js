@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText'
+import { Menu } from '@mui/material';
 
 
 const ITEM_HEIGHT = 48;
@@ -97,6 +98,7 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                     <MenuItem value="male">Male</MenuItem>
                     <MenuItem value="non-binary">Non-Binary</MenuItem>
                     <MenuItem value="trans">Trans People</MenuItem>
+                    <MenuItem value="bi" > Men and Women</MenuItem>
                     <MenuItem value="everyone">Everyone</MenuItem>
                    
                 </Select>

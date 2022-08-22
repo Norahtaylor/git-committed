@@ -1,12 +1,34 @@
-import React from 'react'
+import {useState} from 'react'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import ListSubheader from '@mui/material/ListSubheader';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function PendingRequests({requests, currentUser}) {
-  console.log("requests,", requests)
-  console.log("user", currentUser)
+  const [click, setClick] = useState()
+
+  function handleInfoClick(){
+    setClick(!click)
+  }
+
+  function handleDelete(id) {
+    console.log(id)
+    console.log("i was clicked")
+    fetch(`/matches/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        requestor_id: null,
+        status: "",
+        accepted: false
+      })
+    })
+  }
 
   return (
     <>
@@ -60,27 +82,55 @@ function PendingRequests({requests, currentUser}) {
               // }}
 
               key={match.id}
+              id={match.id}
             >
-              <img
+        
+              <img sx={{overflow: "auto"}}
               
                 src={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format`}
                 srcSet={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={match.receiver.name}
                 loading="lazy"
               />
-              <ImageListItemBar
-                title={`${match.receiver.first_name}, ${match.receiver.age}`}
-                subtitle={match.receiver.bio}
+              {click ? <ImageListItemBar
+                onClick={handleInfoClick}
+                title={`"${match.receiver.bio}"`}
+                subtitle={`💻 ${match.receiver.education}, ${match.receiver.language}`}
 
-              //   actionIcon={
-              //       <IconButton
-              //           sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-              //           aria-label={`info about ${item.title}`}
-              //       >
-              //           <InfoIcon />
-              //       </IconButton>
-              //   }
-              />
+                actionIcon={
+                  <>
+                  <IconButton
+                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                    onClick={handleInfoClick}
+                    aria-label={`info about ${match.first_name}`}
+                  >
+                    <InfoIcon />
+                 
+                 
+                  </IconButton>
+                  {/* <IconButton aria-label="delete">
+                    <DeleteIcon id ={match.id} onClick={ (id) => handleDelete(id) }/>
+                  </IconButton>  */}
+                  </>
+                }
+              /> :  
+              <ImageListItemBar
+            
+                title={`${match.receiver.first_name}, ${match.receiver.age}`}
+              
+                subtitle={`📍${match.receiver.location}`}
+          
+                
+                actionIcon={
+                    <IconButton
+                        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                        onClick={handleInfoClick}
+                       aria-label={`info about ${match.first_name}`}
+                    >
+                        <InfoIcon />
+                    </IconButton>
+                }
+              /> }
             </ImageListItem>
           )
           ) : null

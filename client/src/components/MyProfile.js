@@ -3,6 +3,8 @@ import DeleteButtonMyProfile from './DeleteButtonMyProfile'
 
 function MyProfile({user, setUser}) {
 
+  console.log(user.language)
+
   return (
     <>
     <div>
@@ -13,6 +15,8 @@ function MyProfile({user, setUser}) {
          My Profile</h1>
       
     </div>
+
+
 
 <br></br>
 <br></br>
@@ -65,16 +69,16 @@ function MyProfile({user, setUser}) {
                             </p>
 
                             <p className='item2'>
-                              {user.interested_in}
+                              { user.interested_in === "bi" ? "Women and Men" : user.interested_in}
                             </p>
                   <br></br>
                   <p
                     className='item1'>
-                    Birthday:
+                    Favorite Coding Language:
                   </p>
                   <p className='item2'
                   >
-                    {user.birthdate}</p>
+                    {user.language}</p>
                     <br></br>
                             <p className='item1'>
                               Hometown: 
@@ -93,7 +97,10 @@ function MyProfile({user, setUser}) {
                 </div>
                 <br></br>
                 <br></br>
-                <p>Bio: {user.bio}</p>
+                <p 
+                style={{textAlign: "center", paddingLeft: "4px", paddingRight: "4px"}}
+                >
+                  Bio: {user.bio}</p>
                 <br></br>
                 <button type="button "className='ghost-profile'>Edit Profile</button>
                 <br></br>

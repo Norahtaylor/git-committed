@@ -23,17 +23,17 @@ console.log(handleNextClick)
                     </label>
                     <FormControl>
                         <InputLabel htmlFor='my-input' >
-                            Birthday</InputLabel>
+                            Coding language</InputLabel>
                         <Input
                             id="my-input"
                             aria-describedby='my-helper-text'
-                            name="birthday"
-                            value={form.birthday}
+                            name="language"
+                            value={form.language}
                             onChange={updateForm}
                         />
                         <FormHelperText id='my-helper-text'
                         >
-                            When's your birthday?
+                            What's your favorite coding language? 
                         </FormHelperText>
                     </FormControl>
 

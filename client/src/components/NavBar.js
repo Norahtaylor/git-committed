@@ -76,6 +76,15 @@ const NavBar = ({ onLogout }) => {
                 </MenuItem>
                 <MenuItem>
                     <a 
+                        onClick={() => history.push('/swipe')}
+                        href="/swipe"
+                        className='menu-button'
+                    >
+                    Find love
+                    </a>
+                </MenuItem>
+                <MenuItem>
+                    <a 
                         onClick={() => history.push('/mymatches')} 
                         href='/mymatches'
                         className='menu-button'
@@ -99,15 +108,6 @@ const NavBar = ({ onLogout }) => {
                         className='menu-button'
                     >
                         Your Match Requests
-                    </a>
-                </MenuItem>
-                <MenuItem>
-                    <a 
-                        onClick={() => history.push('/swipe')}
-                        href="/swipe"
-                        className='menu-button'
-                    >
-                    Find love
                     </a>
                 </MenuItem>
                 <MenuItem>

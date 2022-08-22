@@ -12,14 +12,14 @@ function SwiperIcon() {
           display: 'center'
         }}
       >
-        <SwipeIcon 
+        {/* <SwipeIcon 
           sx={{
             justifyContent: "center",
             flexDirection: "column",
             display: "center"
           }} 
         // className="swipe-right" 
-        />
+        /> */}
    
          <span>Swipe right to ❤️, left to say goodbye 👋</span>
     </div>

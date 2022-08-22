@@ -36,7 +36,6 @@ console.log(currentUser)
 
     return(
         <div>
-            {/* <NavBar onLogout={onLogout}/> */}
            <SwipeCard currentUser={currentUser} userProfiles={userProfiles} />
         </div>
     )

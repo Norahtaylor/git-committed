@@ -23,22 +23,20 @@ function CreateNewProfile({currentUser, setUser}) {
         location: "",
         hometown: "",
 
-        birthdate: "",
         education: "",
         bio: "",
         gender: "",
         interested_in: "",
-        //parse gender into a birthdate format 
+        language: "",
         profile_photo: "",
     })
-    //do i need a seperate state for these??? how do i send this in the patch request?
-    // const [interestedIn, setInterestedIn] = useState([]);
+
+
+
     const [error, setError] = useState()
 
-
     console.log(currentUser)
-
-
+    console.log(form)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -72,10 +70,6 @@ function CreateNewProfile({currentUser, setUser}) {
             [e.target.name]: e.target.value,
         })
     }
-
-console.log(form.first_name)
-    console.log(form.age)
-    console.log(form.hometown)
 
     return (
 
@@ -196,21 +190,6 @@ console.log(form.first_name)
                             <label className='label'>
                             Let's add some details
                             </label>
-                            <FormControl>
-                                <InputLabel htmlFor='my-input' >
-                                     Birthday</InputLabel>
-                                <Input
-                                    id="my-input"
-                                    aria-describedby='my-helper-text'
-                                    name="birthdate"
-                                    value={form.birthdate}
-                                    onChange={updateForm} 
-                                />
-                                <FormHelperText id='my-helper-text'
-                            >
-                                When's your birthday?
-                                    </FormHelperText>
-                            </FormControl>
 
                             <FormControl>
                                 <InputLabel htmlFor='my-input' >
@@ -225,6 +204,21 @@ console.log(form.first_name)
                                 <FormHelperText id='my-helper-text'
                                 >
                                 Where did you go to school or coding bootcamp?</FormHelperText>
+                            </FormControl>
+                            <FormControl>
+                                <InputLabel htmlFor='my-input' >
+                                     Coding Language</InputLabel>
+                                <Input
+                                    id="my-input"
+                                    aria-describedby='my-helper-text'
+                                    name="language"
+                                    value={form.language}
+                                    onChange={updateForm} 
+                                />
+                                <FormHelperText id='my-helper-text'
+                            >
+                                What's your favorite coding language? 
+                                    </FormHelperText>
                             </FormControl>
                             <br></br>
                             <FormControl>

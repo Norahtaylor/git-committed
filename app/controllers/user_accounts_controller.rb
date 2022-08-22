@@ -14,20 +14,26 @@ class UserAccountsController < ApplicationController
         # female = UserAccount.where(gender:"female")
 
          if (user.interested_in === "male")
-          render json: UserAccount.where(gender:"male")
+          render json: UserAccount.where(gender:"male", interested_in: "male")
 
          elsif( user.interested_in === "female")
-         render json: UserAccount.where(gender:"female")
+         render json: UserAccount.where(gender:"female", interested_in: "female")
 
          elsif (user.interested_in === "trans")
          render json: UserAccount.where(gender: "trans")
 
          elsif (user.interested_in === "non-binary")
-         render json: UserAccount.where(gender: "non-binary")
+         render json: UserAccount.where(gender: "non-binary", interested_in: "non-binary")
+
+         elsif (user.interested_in === "bi" && user.gender === "male")
+            render json: UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male"))
+            
+         elsif (user.interested_in === "bi" && user.gender === "female")
+            render json: UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female"))
 
          else (user.interested_in === "everyone")
          render json: UserAccount.all 
-          
+        
      end 
 end
 
@@ -69,6 +75,6 @@ private
     end 
 
     def user_params
-        params.permit(:first_name, :last_name, :username, :password, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location)
+        params.permit(:first_name, :last_name, :username, :password, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location, :language)
     end 
 end
