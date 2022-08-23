@@ -8,10 +8,9 @@ import CreateNewProfile from './components/CreateNewProfile';
 import PendingApproval from './components/PendingApproval';
 import PendingRequests from './components/PendingRequests';
 import {useState, useEffect} from 'react';
-import { Switch, Router, Route, BrowserRouter,useHistory } from "react-router-dom";
+import { Switch, Route, BrowserRouter,useHistory } from "react-router-dom";
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
-
 
 function App() {
   const [user, setUser] = useState({})
@@ -39,29 +38,25 @@ function App() {
     })
   }, [])
 
-
   // dependency to handle changes on useEffects
   function updateCard() {
     setUpdate(!update)
   }
 
+//log in user 
   function onLogin(user){
     setUser(user)
   }
-
+  
+//log out user 
   function onLogout(user){
     setUser(null)
   }
 
-  //this is setting the state for User Profile page from the GET request to show a specific user when clicked 
+  // setting the state for User Profile page from the GET request to show a specific user when clicked 
   function handleSelectedMatch(selectedMatch){
     setSelectedMatch(selectedMatch)
   }
-  console.log(selectedMatch)
-
-    // if(!user) {
-    //   history.push('/login')
-    //   return <Login />}
 
   return (
     <div> 

@@ -3,43 +3,54 @@ class UserAccountsController < ApplicationController
 
     def index 
         user = UserAccount.all
-        render json: user
+        render json: user.to_json(include: [:requestors, :receivers])
     end 
 
     #all the attributes are setter and getter methods thats why you can call them on class
+# for current user === requestor_id
+#     UserAccount.joins(UserAccount.id === Match.receiver_id).Match.where(status: "null")
+
+#     if UserAccount.receivers
 
     def show_interested
         user = UserAccount.find_by(id: session[:user_id])
-        # male = UserAccount.where(gender: "male")
-        # female = UserAccount.where(gender:"female")
 
          if (user.interested_in === "male")
-          render json: UserAccount.where(gender:"male", interested_in: "male")
+            accounts = UserAccount.where(gender:"male", interested_in: "male") 
+             render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+           
 
-         elsif( user.interested_in === "female")
-         render json: UserAccount.where(gender:"female", interested_in: "female")
-
+         elsif (user.interested_in === "female")
+         users = UserAccount.where(gender:"female", interested_in: "female") 
+         render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+         
          elsif (user.interested_in === "trans")
-         render json: UserAccount.where(gender: "trans")
+           users= UserAccount.where(gender: "trans") 
+            render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
          elsif (user.interested_in === "non-binary")
-         render json: UserAccount.where(gender: "non-binary", interested_in: "non-binary")
+         users = UserAccount.where(gender: "non-binary", interested_in: "non-binary") 
+         render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
          elsif (user.interested_in === "bi" && user.gender === "male")
-            render json: UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male"))
+           users= UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male")) 
+            render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
             
          elsif (user.interested_in === "bi" && user.gender === "female")
-            render json: UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female"))
-
+            match = UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female"))
+            render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id} 
+            
          else (user.interested_in === "everyone")
-         render json: UserAccount.all 
-        
-     end 
-end
+            match = UserAccount.where(interested_in: "female") 
+            render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+         
+        end 
+    end
+
 
 
     def show 
-        user = UserAccount.find_by(id: params[:id])
+        user = UserAccount.find(params[:id])
         render json: user, status: :ok
     end 
 

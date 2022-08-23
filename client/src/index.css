@@ -338,8 +338,8 @@ button {
 }
 
 .cardContainer {
-  width: 90vw;
-  max-width: 260px;
+  width: 100vw;
+  max-width: 300px;
   height: 425px;
   justify-content: center;
   align-items: center;

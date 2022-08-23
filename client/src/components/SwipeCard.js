@@ -11,28 +11,30 @@ function SwipeCard({userProfiles, currentUser}) {
     //this is saying which direction someone swiped. 
     const [isShown, setIsShown] = useState(false)
     //Tinder card hover
+    const [currentIndex, setCurrentIndex] = useState(userProfiles.length-1 )
 
-    const swiped = (direction, nameToDelete) => {
-        console.log('removing:' + nameToDelete)
-        setLastDirection(direction)
-        console.log('direction:', {direction})
+    const swiped = (dir, user) => {
+        console.log('removing:', user)
+        setLastDirection(dir)
+        console.log('direction:', {dir})
+        setCurrentIndex(currentIndex - 1)
     }
 
     //how to remove the user that someone swiped on, do i need another column that saves them as already swiped on?
 
-    //record that they swiped yes or no, query filtered that were not swiped on. exclude current user. backend. user 1 swiped on user 2 , true or false. 
-    //record yes or no for swipe direction in the match table and then filter out what the currentUser sees on the backend based on that data
+
+    console.log(currentIndex)
+    //after refresh, it shows -1
+    // if currentIndex < 0 do not refresh and show the cards again
 
     const outOfFrame = (id) => {
         console.log("swiped on user id", id)
-        // console.log(id + ' left the screen!')
-        //why is id coming through on this function and not 
     }
-    
 
    const swipeDirection = (dir, id) => {
-    console.log("i swiped:", dir)
-    console.log("current user", currentUser.id)
+    // console.log("i swiped:", dir)
+    // console.log("current user", currentUser.id)
+    // console.log("swiped on user id", id)
 
     if(dir === 'right')
         fetch('/matches', {
@@ -65,11 +67,6 @@ function SwipeCard({userProfiles, currentUser}) {
    }
         
 
-    //logic for determining swipe left or right to make a match
-    //right swipe make post request with accepted: true
-
-    // how to share that we ran out of matches? and display the error page?
-
     return (
         <>
         <h1 
@@ -77,9 +74,9 @@ function SwipeCard({userProfiles, currentUser}) {
             className='form-box-h5'
         >
             Git Committed</h1>
+            <br></br>
             <div className="card-center"
             >
-
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
            
@@ -90,7 +87,7 @@ function SwipeCard({userProfiles, currentUser}) {
                     key={user.id} 
                     id={user.id}
                     preventSwipe={['up', 'down']}
-                    // onSwipe={() => swiped(user.name)} 
+                    onSwipe={(dir) => swiped(dir, user.name)} 
                     onCardLeftScreen={(dir) => swipeDirection(dir, user.id)}
                     >
                         <div style={{ backgroundImage: 'url(' + user.profile_photo + ')' }} className='card'>

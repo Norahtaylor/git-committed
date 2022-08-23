@@ -6,8 +6,6 @@ class UserAccount < ApplicationRecord
     # validates :password, presence: true
     validates :username, presence: true
 
-
-
     has_many :receivers, foreign_key: :receiver_id, class_name: "Match"
     has_many :requestors, through: :receivers 
     

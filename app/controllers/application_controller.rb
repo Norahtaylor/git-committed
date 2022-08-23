@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-#     before_action :authorize
 include ActionController::Cookies
 
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record

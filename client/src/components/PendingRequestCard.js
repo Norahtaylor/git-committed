@@ -13,32 +13,23 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
   const [click, setClick] = useState()
   let history = useHistory()
 
-  // function handleInfoClick(){
-  //   setClick(!click)
-  // }
-
   function handleInfoClick(match) {
     console.log('info clicked')
     fetch(`/matches/${match.id}`)
       .then(res => res.json())
       .then(handleSelectedMatch(match))
-
     history.push(`/userprofile/${match.id}`)
   }
 
-
   function handleDelete(match) {
-
     console.log("i was clicked")
     fetch(`/matches/${match.id}`, {
       method: "DELETE",
-      
     }).then(() => updateCard())
   }
 
   return (
     <>
-
       <div > 
       <h5 className='form-box-h5'
       > Unrequited love</h5>
@@ -78,27 +69,15 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
           {requests.length > 0 ? requests.map((match) => (
 
             <ImageListItem
-              // sx={{
-              //   minWidth: "100%",
-              //   maxWidth: "50px",
-              //   minHeight: "50%",
-              //   // justifyContent: "space-between"
-              // }}
-
               key={match.id}
               id={match.id}
-            >
-        
-              <img sx={{overflow: "auto"}}
-              
+            >       
+              <img sx={{overflow: "auto"}}              
                 src={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format`}
                 srcSet={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={match.receiver.name}
                 loading="lazy"
-              />
-
-              
-                
+              />               
                <ImageListItemBar
                 // onClick={handleInfoClick}
                 title={`${match.receiver.first_name}, ${match.receiver.age}`}
@@ -110,18 +89,15 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
                     onClick={() => handleInfoClick(match)}
                     aria-label={`info about ${match.first_name}`}
                   >
-                    <InfoIcon />
-                 
-                 
+                  <InfoIcon />       
+
                   </IconButton>
                   <IconButton 
                       sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                       aria-label="delete">
                     <DeleteIcon id ={match.id} onClick={ () => handleDelete(match) }/>
                   </IconButton> 
-
                   </>
-
                 }
               /> 
             </ImageListItem>
