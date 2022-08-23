@@ -1,7 +1,7 @@
 import {useState, useEffect } from 'react'
 import PendingRequestCard from './PendingRequestCard'
 
-function PendingRequests({currentUser, updateCard, update, setUpdate}) {
+function PendingRequests({currentUser, handleSelectedMatch, updateCard, update, setUpdate}) {
     const [requests, setRequests] = useState([])
     // const [update, setUpdate] = useState(false)
 
@@ -22,7 +22,7 @@ function PendingRequests({currentUser, updateCard, update, setUpdate}) {
  
   return (
     <div>
-        <PendingRequestCard updateCard={updateCard} update={update} setUpdate={setUpdate}setRequests={setRequests} requests={requests}/>
+        <PendingRequestCard handleSelectedMatch={handleSelectedMatch} updateCard={updateCard} update={update} setUpdate={setUpdate}setRequests={setRequests} requests={requests}/>
     </div>
   )
 }

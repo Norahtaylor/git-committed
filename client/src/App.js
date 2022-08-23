@@ -65,12 +65,11 @@ function App() {
 
   return (
     <div> 
+  <BrowserRouter>
       {user && user.username ? 
         <NavBar user={user} setUser={setUser} onLogout={onLogout}/> 
       : 
       null}
-
-  <BrowserRouter>
     <div className='App'>
       <Switch>
         <Route exact path="/myprofile">
@@ -99,7 +98,7 @@ function App() {
             <PendingApproval currentUser={user} />
         </Route>
         <Route exact path='/pendingrequests'> 
-            <PendingRequests updateCard={updateCard} update={update} setUpdate={setUpdate} currentUser={user} />
+            <PendingRequests handleSelectedMatch={handleSelectedMatch} updateCard={updateCard} update={update} setUpdate={setUpdate} currentUser={user} />
         </Route>
         <Route exact path='/userprofile/:id'> 
           <UserProfile user={user} match={selectedMatch} />

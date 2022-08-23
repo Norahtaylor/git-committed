@@ -25,12 +25,25 @@ const NavBar = ({ onLogout }) => {
     }
 
     function handleLogout() {
-        fetch('./logout', {
+        fetch('/logout', {
             method: 'DELETE',
-        }).then(onLogout())
+        })
+        .then((r) => {
+            if(r.ok) {
+            (onLogout())
+            }
+        })
         // .then(goBackHome)
-        // .then(history.push('/login'))
-    }
+         .then(() => history.push('/login'))
+     }
+
+    // function handleLogout() {
+    //     fetch('/logout', {
+    //         method: 'DELETE',
+    //     }).then(onLogout())
+    //     // .then(goBackHome)
+    //     // .then(history.push('/login'))
+    // }
 
 
     return (

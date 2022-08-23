@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { useHistory} from 'react-router-dom'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -8,16 +9,23 @@ import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorPage from './ErrorPage'
 
-function PendingRequests({ updateCard, requests, setRequests, currentUser}) {
+function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequests, currentUser}) {
   const [click, setClick] = useState()
+  let history = useHistory()
 
-  function handleInfoClick(){
-    setClick(!click)
+  // function handleInfoClick(){
+  //   setClick(!click)
+  // }
+
+  function handleInfoClick(match) {
+    console.log('info clicked')
+    fetch(`/matches/${match.id}`)
+      .then(res => res.json())
+      .then(handleSelectedMatch(match))
+
+    history.push(`/userprofile/${match.id}`)
   }
 
-  // function updateCard() {
-  //   setUpdate(!update)
-  // }
 
   function handleDelete(match) {
 
@@ -90,17 +98,16 @@ function PendingRequests({ updateCard, requests, setRequests, currentUser}) {
               />
 
               
-                { click ?
-               <ImageListItemBar
-                onClick={handleInfoClick}
-                title={`"${match.receiver.bio}"`}
-                subtitle={`💻   ${match.receiver.education}, ${match.receiver.language}`}
                 
+               <ImageListItemBar
+                // onClick={handleInfoClick}
+                title={`${match.receiver.first_name}, ${match.receiver.age}`}
+                subtitle={`📍${match.receiver.location}`}
                 actionIcon={
                   <>
                   <IconButton
                     sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                    onClick={handleInfoClick}
+                    onClick={() => handleInfoClick(match)}
                     aria-label={`info about ${match.first_name}`}
                   >
                     <InfoIcon />
@@ -116,24 +123,7 @@ function PendingRequests({ updateCard, requests, setRequests, currentUser}) {
                   </>
 
                 }
-              /> :  
-              <ImageListItemBar
-            
-                title={`${match.receiver.first_name}, ${match.receiver.age}`}
-              
-                subtitle={`📍${match.receiver.location}`}
-          
-                
-                actionIcon={
-                    <IconButton
-                        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                        onClick={handleInfoClick}
-                       aria-label={`info about ${match.first_name}`}
-                    >
-                        <InfoIcon />
-                    </IconButton>
-                }
-              /> }
+              /> 
             </ImageListItem>
           )
           ) : <ErrorPage  />
