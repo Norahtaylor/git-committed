@@ -23,7 +23,6 @@ function App() {
     age: "",
     location: "",
     hometown: "",
-
     education: "",
     bio: "",
     gender: "",
@@ -106,7 +105,7 @@ function App() {
           <UserProfile user={user} match={selectedMatch} />
         </Route>
         <Route exact path='/editprofile/:id'>
-            <EditProfile user={user} editDetails={editDetails} setEditDetails={setEditDetails} />
+            <EditProfile user={user} setUser={setUser} editDetails={editDetails} setEditDetails={setEditDetails} />
         </Route>
 
       </Switch>

@@ -11,25 +11,25 @@ import Form from './Form.css';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Practice from './Practice'
+import EditProfile2 from './EditProfile2'
 
 
-function EditProfile({ user, editDetails, setEditDetails  }) {
+function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
     const [count, setCount] = useState(1)
     const history = useHistory();
-    const [form, setForm] = useState({
-        first_name: "",
-        age: "",
-        location: "",
-        hometown: "",
+    // const [form, setForm] = useState({
+    //     first_name: "",
+    //     age: "",
+    //     location: "",
+    //     hometown: "",
 
-        education: "",
-        bio: "",
-        gender: "",
-        interested_in: "",
-        language: "",
-        profile_photo: "",
-    })
+    //     education: "",
+    //     bio: "",
+    //     gender: "",
+    //     interested_in: "",
+    //     language: "",
+    //     profile_photo: "",
+    // })
     const [error, setError] = useState()
 
      console.log(editDetails)
@@ -37,23 +37,19 @@ function EditProfile({ user, editDetails, setEditDetails  }) {
     function handleSubmit(e) {
        e.preventDefault()
         //POST REQUEST TO CREATE PROFILE
+         fetch(`/user_accounts/${user.id}`, {
+             method: "PATCH",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify(
+                 editDetails
+             )
 
-    //     fetch(`/user_accounts/${user.id}`, {
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(
-    //             form
-    //         )
-
-    //     })
-    //         .then(res => res.json())
-    //         .then((user) => setUser(user))
-
-    //     console.log(user)
-    //     history.push('/myprofile')
-
+         })
+             .then(res => res.json())
+             .then((user) => setUser(user))
+         history.push('/myprofile')
      }
 
     function handleNextClick() {
@@ -61,11 +57,12 @@ function EditProfile({ user, editDetails, setEditDetails  }) {
     }
 
     const updateForm = (e) => {
-        setForm({
-            ...form,
+        setEditDetails({
+            ...editDetails,
             [e.target.name]: e.target.value,
         })
     }
+    console.log(editDetails.hometown)
 
     return (
 
@@ -95,7 +92,7 @@ function EditProfile({ user, editDetails, setEditDetails  }) {
                 {count === 1 ? (  //when the page count is 1 show this 
                     <div className='field1'>
                         <label className='label'>
-                            Create Your Profile
+                            Edit Your Profile
                         </label>
                         <FormControl>
                             <InputLabel htmlFor='my-input' >
@@ -184,7 +181,7 @@ function EditProfile({ user, editDetails, setEditDetails  }) {
 
                     <div className='field1'>
                         <label className='label'>
-                            Let's add some details
+                            Edit your some details
                         </label>
 
                         <FormControl>
@@ -271,14 +268,13 @@ function EditProfile({ user, editDetails, setEditDetails  }) {
             {/* PAGE THREE  */}
             <div>
                 {count === 3 ?
-                    <Practice
-                        interested_in={form.interested_in}
-                        gender={form.gender}
+                    <EditProfile2
                         count={count}
                         setCount={setCount}
                         handleNextClick={handleNextClick}
                         handleSubmit={handleSubmit}
                         updateForm={updateForm}
+                        editDetails={editDetails}
                     /> : null
                 }
             </div>
