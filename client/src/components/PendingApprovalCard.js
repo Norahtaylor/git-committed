@@ -1,11 +1,12 @@
 import {useRef, useMemo, useState} from 'react'
 import TinderCard from 'react-tinder-card'
-import { useRouteMatch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import SwiperIcon from './SwiperIcon'
 import ErrorPage from './ErrorPage'
 
 
 function PendingApprovalCard({ pendingApproval, user }) {
+    const history = useHistory()
     const [lastDirection, setLastDirection] = useState()
 
     const swipeDirection = (dir, id) => {
@@ -47,10 +48,11 @@ function PendingApprovalCard({ pendingApproval, user }) {
           >  Matches Pending Your Approval </h5>
           <label className='label'>
               They swiped right on you!
-            
           </label>
             <div className="card-center"
             >
+              <SwiperIcon />
+              <br></br>
             
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
@@ -64,17 +66,24 @@ function PendingApprovalCard({ pendingApproval, user }) {
                     // onSwipe={() => swiped(user.name)} 
                     onCardLeftScreen={(dir) => swipeDirection(dir, match.id)}
                     >
-                        <div style={{ backgroundImage: 'url(' + match.requestor.profile_photo + ')' }} className='card'>
+                        <div 
+                        style={{ backgroundImage: 'url(' + match.requestor.profile_photo + ')' }} className='card'>
                             <h2>{match.requestor.first_name}, {match.requestor.age}</h2>
                         </div>
                     </TinderCard>
                 ) : 
-                <div style={{alignItems: "center"}}><ErrorPage /> </div>
+                <div 
+                className='card-center'
+                // overflow:"hidden"
+                >
+                <button
+                    onClick={() => history.push('/swipe')}
+                >
+                    Take me to find love</button>
+                </div>
             } 
             </div>
                 
-        
-            <SwiperIcon />
 
             {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
         </div>

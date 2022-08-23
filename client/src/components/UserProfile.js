@@ -99,7 +99,11 @@ function UserProfile({ match, user }) {
                                       >
                                           Bio: {match.receiver.bio}</p>
                                           <br></br>
-                            <button onClick={() => navigate.push('/mymatches')}>Back to Matches</button>
+                            <button 
+                                className='ghost-profile' 
+                                onClick={() => navigate.push('/mymatches')}
+                            >
+                                Back to Matches</button>
                         </div>
                     </div>
                 </div>

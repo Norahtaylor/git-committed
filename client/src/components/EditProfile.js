@@ -17,19 +17,6 @@ import EditProfile2 from './EditProfile2'
 function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
     const [count, setCount] = useState(1)
     const history = useHistory();
-    // const [form, setForm] = useState({
-    //     first_name: "",
-    //     age: "",
-    //     location: "",
-    //     hometown: "",
-
-    //     education: "",
-    //     bio: "",
-    //     gender: "",
-    //     interested_in: "",
-    //     language: "",
-    //     profile_photo: "",
-    // })
     const [error, setError] = useState()
 
      console.log(editDetails)

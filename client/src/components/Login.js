@@ -36,20 +36,14 @@ function Login({ setUser, user, onLogin }) {
                 }
             }) }
 console.log(errors)
-//   console.log(user)
 
-
-
-    return(
-        
+    return(  
         <div className='homepage'>
-   
-
             <div className="container" id="container">
                 <div className="form-container ">
                     <form onSubmit={handleSubmit}className="sign-in-container" action="#">
                         <h1 className="signup-h1">Login</h1>
-                        <input className="signup-input" type="text" placeholder="First Name" />
+                        {/* <input className="signup-input" type="text" placeholder="First Name" /> */}
                         <input className="signup-input" 
                         value={username}
                         onChange={e => setUsername(e.target.value)}

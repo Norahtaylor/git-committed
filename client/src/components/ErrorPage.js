@@ -4,12 +4,20 @@ import {useHistory} from 'react-router-dom'
 function ErrorPage({history}) {
     history = useHistory()
   return (
-      <div>
+    <div className="card-center">
         <div
-           className='no-matches'
+          //  className='no-matches'
         >
               
-              <iframe src="https://giphy.com/embed/QB78LMb32YqoE" width="480" height="326" frameBorder="0" class="giphy-embed" allowFullScreen>
+              <iframe src="https://giphy.com/embed/QB78LMb32YqoE" 
+              width="480" 
+              height="326" 
+              frameBorder="0" 
+              class="giphy-embed" 
+              alignItems="center"
+              justifyContent= "center"
+
+              allowFullScreen>
                 </iframe>
                 <p>
                     <a href="https://giphy.com/gifs/sad-crying-james-van-der-beek-QB78LMb32YqoE">

@@ -44,10 +44,10 @@ function handleInfoClick(match) {
           🎉 time to get your flirt on 🎉
         </label>
       </div>
-      <div
+      <div className="card-center"
           style={{
-            display: "flex",
-            alignItems: "center",
+            //  display: "column",
+              alignItems: "center",
             justifyContent: "center"
           }}
       >

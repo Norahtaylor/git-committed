@@ -54,7 +54,7 @@ const Homepage = ({setUser}) =>  {
 
             <div className="container" id="container">
                 <div className="form-container ">
-                    <form className="sign-in-container" 
+                    <form className="create-container" 
                         onSubmit={handleSubmit}
                     >
                         <h1 className="signup-h1">Create Account</h1>
