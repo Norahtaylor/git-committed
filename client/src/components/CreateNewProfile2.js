@@ -8,79 +8,98 @@ import CreateNewProfile3 from './CreateNewProfile3'
 import TextField from '@mui/material/TextField';
 import Form from './Form.css'
 
-function CreateNewProfile2({count, setCount}) {
+function CreateNewProfile2({ count, setCount, handleNextClick }) {
+    
 console.log(count)
+console.log(handleNextClick)
     return (
         <>
         <div>test</div>
         <div className='form-box'>
-            <h5 className='form-box-h5'> Steps: {count} of 4
-            </h5>
-            <form>
-                {count === 2 ? (  
-                    <div className='field1'>
-                        <label className='label'>
-                            Create Your Profile
-                        </label>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Your Name </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Name potential matches will see.</FormHelperText>
-                        </FormControl>
+          
+                <div className='field1'>
+                    <label className='label'>
+                        Let's add some details
+                    </label>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Coding language</InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="language"
+                            value={form.language}
+                            onChange={updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
+                        >
+                            What's your favorite coding language? 
+                        </FormHelperText>
+                    </FormControl>
 
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Age </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>How old are you?</FormHelperText>
-                        </FormControl>
-                        <br></br>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Neighborhood </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Where do you live?</FormHelperText>
-                        </FormControl>
-                        <FormControl>
-                            <InputLabel htmlFor='my-input' >
-                                Education </InputLabel>
-                            <Input id="my-input" aria-describedby='my-helper-text' />
-                            <FormHelperText id='my-helper-text'>Where did you go to school or coding bootcamp?</FormHelperText>
-                        </FormControl>
-                        <br ></br>
-                        <button
-                            className='button-create-profile'
-                            type="submit"
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Education </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="education"
+                            value={form.education}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
                         >
-                            Submit
-                        </button>
-                        <br>
-                        </br>
-                        <button
-                            className="prevBtn"
-                            type="submit"
-                            onClick={() => setCount(count - 1)}
+                            Where did you go to school or coding bootcamp?</FormHelperText>
+                    </FormControl>
+                    <br></br>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input'
                         >
-                            PREV
-                        </button>
-                        <button
-                            className="nextBtn"
-                            type="submit"
-                            onClick={() => setCount(count + 1)}
+                            Tell us about yourself </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="bio"
+                            value={form.bio}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
                         >
-                            NEXT
-                        </button>
-
-                    </div>
-                ) : null}
-                <div>
-                    {count === 3 ?
-                        <CreateNewProfile3 count={count} /> : null
-                    }
+                            This bio will be displayed to potential matches
+                        </FormHelperText>
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel htmlFor='my-input' >
+                            Insert photo URL </InputLabel>
+                        <Input
+                            id="my-input"
+                            aria-describedby='my-helper-text'
+                            name="photo"
+                            value={form.photo}
+                            onChange={() => updateForm}
+                        />
+                        <FormHelperText id='my-helper-text'
+                        >
+                            Add a profile photo</FormHelperText>
+                    </FormControl>
+                    <br></br>
+                    <button
+                        className="prevBtn"
+                        type="button"
+                        onClick={(() =>
+                            setCount(count - 1))
+                        }
+                    >
+                        PREV
+                    </button>
+                    <button
+                        className="nextBtn"
+                        type="button"
+                        onClick={() => handleNextClick()}
+                    >
+                        NEXT
+                    </button>
                 </div>
-
-            </form>
         </div>
         </>
     )

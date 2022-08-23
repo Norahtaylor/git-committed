@@ -1,7 +1,7 @@
 .button-create-profile{
     border-radius: 20px;
         border: 1px solid #FF4B2B;
-        background-color: #FF4B2B;
+        background-color: #EB0F59;
         color: #FFFFFF;
         font-size: 10px;
         font-weight: bold;
@@ -10,6 +10,8 @@
         text-transform: uppercase;
         transition: transform 80ms ease-in;
         cursor: pointer;
+        margin: 1rem 0 1rem 8rem;
+        border-radius: 0 20px 20px 0;
 }
 
 * {
@@ -35,7 +37,7 @@
 .form-box-h5{
     font-size: 35px;
     text-align: center;
-    color: #FF4B2B;
+    color: #EB0F59;
     margin: 0 0 .5vh 0;
         
 }
@@ -62,7 +64,7 @@
     height: 15vh;
 }
 
-.nextBtn, .prevBtn {
+.nextBtn, .prevBtn, .button-create-profile{
     cursor: pointer;
     text-align: center;
     font-size: 15px;
@@ -83,9 +85,11 @@
     border-radius: 0 20px 20px 0;
 }
 
+.startBtn:hover,
 .nextBtn:hover,
+.button-create-profile:hover,
 .prevBtn:hover {
-    background-color: rgb(245, 245, 78);
+    background-color: #7D5EF1;
     transition: 1s background ease;
 }
 

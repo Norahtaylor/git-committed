@@ -3,37 +3,47 @@ import { useHistory } from "react-router-dom";
 import NavBar from './NavBar';
 
 
-function Login({setUser}) {
+function Login({ setUser, user, onLogin }) {
     let navigate = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errors, setErrors] = useState([])
 
     function navigateLogin() {
         navigate.push("/")
     }
 
-    function handleSubmit(e){
-        e.preventDefault(e)
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
         fetch('/login', {
-            method: "POST", 
+            method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 username: username,
-                password: password })
+                password: password
+            })
         })
-        .then((res) => res.json())
-        .then((user) => setUser(user))
-        setUsername('')
-        setPassword('')
-        navigate.push('/swipe')
-    }
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => onLogin(user))
+                    navigate.push('/swipe')
+                } else {
+                    r.json().then((err) => setErrors(err.errors))
+                }
+            }) }
+console.log(errors)
+//   console.log(user)
+
+
 
     return(
         
         <div className='homepage'>
-           
+   
 
             <div className="container" id="container">
                 <div className="form-container ">
@@ -51,6 +61,11 @@ function Login({setUser}) {
                         type="password" 
                         placeholder="Password" />
                         <button className='button'>Login</button>
+                        <div style={{ color: "red" }}>
+                            
+                            {/* {errors.map(error => (
+                                <div key={error}>{error}</div>))} */}
+                        </div>
                     </form>
                 </div>
 

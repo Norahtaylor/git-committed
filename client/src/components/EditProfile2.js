@@ -21,32 +21,19 @@ const MenuProps = {
     },
 };
 
-
-
-// function getStyles(name, interestIn, theme) {
-//     return {
-//         fontWeight:
-//             interestIn.indexOf(name) === -1
-//                 ? theme.typography.fontWeightRegular
-//                 : theme.typography.fontWeightMedium,
-//     };
-// }
-
-export default function MultipleSelect({ handleNextClick, updateForm, handleSubmit, setCount, count, gender, interested_in,  }) {
+export default function EditProfile2({ handleNextClick, editDetails, updateForm, handleSubmit, setCount, count, gender, interested_in, }) {
     const theme = useTheme();
 
 
     return (
         <div>
             <label className='label'>
-                Let's get personal
+                Edit the personal details
             </label>
-   
-
 
             <FormControl sx={{ padding: 3, m: 1, width: 300 }}>
-                <InputLabel 
-                    sx={{padding: 3}}
+                <InputLabel
+                    sx={{ padding: 3 }}
                     id="demo-multiple-name-label"
                 >
                     Select
@@ -56,7 +43,7 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-multiple-name"
                     name="gender"
-                    value={gender}
+                    value={editDetails.gender}
                     onChange={updateForm}
                     input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
@@ -70,16 +57,16 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                 <FormHelperText sx={{
                     fontSize: 18,
                     paddingTop: 2
-                    
+
                 }}
-                id='my-helper-text'
+                    id='my-helper-text'
                 >
                     How do you indentify?
                 </FormHelperText>
-            </FormControl> 
+            </FormControl>
 
             <FormControl sx={{ padding: 3, m: 1, width: 300 }}>
-                <InputLabel 
+                <InputLabel
                     id="demo-multiple-name-label"
                     sx={{ padding: 3 }}
                 >
@@ -89,7 +76,7 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                     labelId="demo-multiple-name-label"
                     id="demo-multiple-name"
                     name="interested_in"
-                    value={interested_in}
+                    value={editDetails.interested_in}
                     onChange={updateForm}
                     input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
@@ -100,17 +87,17 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                     <MenuItem value="trans">Trans People</MenuItem>
                     <MenuItem value="bi" > Men and Women</MenuItem>
                     <MenuItem value="everyone">Everyone</MenuItem>
-                   
+
                 </Select>
-                <FormHelperText 
-                id='my-helper-text'
+                <FormHelperText
+                    id='my-helper-text'
                     sx={{
                         fontSize: 18,
                         paddingTop: 2
 
                     }}
                 >
-                    Who are you interested in?                         
+                    Who are you interested in?
                 </FormHelperText>
             </FormControl>
             <br></br>
@@ -121,19 +108,18 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                     setCount((count) => count - 1))
                 }
             >
-                {console.log(count)}
                 PREV
             </button>
-            
-            <button 
-                    className='button-create-profile'
-                    type="submit"
-                    onClick={handleSubmit}
-                    >
-                        Submit
-                    </button>
-                    <br>
-                    </br>
+
+            <button
+                className='button-create-profile'
+                type="submit"
+                onClick={handleSubmit}
+            >
+                Submit
+            </button>
+            <br>
+            </br>
         </div>
     );
 }

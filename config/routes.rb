@@ -15,6 +15,14 @@ Rails.application.routes.draw do
 
   get '/mymatches', to: 'matches#my_matches'
 
+  get '/pendingapproval', to: 'matches#pending_approval'
+
+  get '/yourrequests', to: 'matches#requested'
+
+  get '/findlove', to: 'user_accounts#show_interested'
+
+  # delete '/mymatches/:id', to: 'matches#delete_match'
+
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }

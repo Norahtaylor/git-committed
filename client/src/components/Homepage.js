@@ -6,13 +6,13 @@ const Homepage = ({setUser}) =>  {
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [errors, setErrors] = useState([])
 
     let navigate = useHistory()
 
     function navigateLogin() {
         navigate.push("/login")
     }
-
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -33,20 +33,28 @@ const Homepage = ({setUser}) =>  {
                 first_name: firstName
             })
         })
-        .then(r => r.json())
-        .then(user => setUser(user))
+        .then((r) => {
+        if (r.ok){
+            r.json().then((user) => setUser(user))
+            navigate.push('/createprofile')
+        } else {
+            r.json().then((err) => setErrors(err.errors))
+        } 
+    })
         setUsername('')
         setPassword('')
         setFirstName('')
         setLastName('')
     }
 
+
+
     return (
         <div className='homepage'>
 
             <div className="container" id="container">
                 <div className="form-container ">
-                    <form className="homepage-form" 
+                    <form className="sign-in-container" 
                         onSubmit={handleSubmit}
                     >
                         <h1 className="signup-h1">Create Account</h1>
@@ -82,10 +90,14 @@ const Homepage = ({setUser}) =>  {
                         <button 
 
                         type="submit" 
-                        // onSubmit={handleSubmit} 
+                        onSubmit={handleSubmit} 
                       
                         className='button'>
                             Sign Up</button>
+                        <div style={{color: "red"}}>
+                            {errors.map(error => (
+                                <div key={error}>{error}</div>))}
+                        </div>
                     </form>
                 </div>
 

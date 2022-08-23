@@ -1,11 +1,12 @@
 class UserAccount < ApplicationRecord
     # has_one :user_profile, dependent: :destroy
+    has_secure_password 
     
     validates :username, uniqueness: true
     # validates :password, presence: true
     validates :username, presence: true
 
-    has_secure_password 
+
 
     has_many :receivers, foreign_key: :receiver_id, class_name: "Match"
     has_many :requestors, through: :receivers 

@@ -1,24 +1,29 @@
 import {useEffect, useState} from 'react';
 import MatchCard from './MatchCard';
-import NavBar from './NavBar';
+import PendingRequests from './PendingRequestCard';
 
 
-export default function MyMatches({currentUser}) {
+export default function MyMatches({ currentUser, handleSelectedMatch, updateCard, update }) {
     const [matches, setMatches] = useState([])
+    const [errors, setErrors] = useState()
 
-console.log(currentUser)
+
 
 useEffect(() => {
     fetch('/mymatches')
         .then(res => res.json())
         .then(matches => setMatches(matches))
-}, [])
+}, [update])
 
-console.log(matches)
     
     return (
         <div>
-            <MatchCard matches={matches}/>
+            <MatchCard user={currentUser} 
+            handleSelectedMatch={handleSelectedMatch} 
+            setMatches={setMatches} 
+            matches={matches} 
+            updateCard={updateCard}
+            />
         </div>
     );
 }
