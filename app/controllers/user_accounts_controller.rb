@@ -21,7 +21,7 @@ class UserAccountsController < ApplicationController
            
 
          elsif (user.interested_in === "female")
-         users = UserAccount.where(gender:"female", interested_in: "female") 
+         users = UserAccount.where(gender:"female", interested_in: "female").or(UserAccount.where(gender: "non-binary", interested_in: "female")) 
          render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
          
          elsif (user.interested_in === "trans")
@@ -29,7 +29,7 @@ class UserAccountsController < ApplicationController
             render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
          elsif (user.interested_in === "non-binary")
-         users = UserAccount.where(gender: "non-binary", interested_in: "non-binary") 
+         users = UserAccount.where(gender: "non-binary")
          render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
          elsif (user.interested_in === "bi" && user.gender === "male")
@@ -46,8 +46,6 @@ class UserAccountsController < ApplicationController
          
         end 
     end
-
-
 
     def show 
         user = UserAccount.find(params[:id])

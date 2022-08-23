@@ -74,9 +74,12 @@ function SwipeCard({userProfiles, currentUser}) {
             className='form-box-h5'
         >
             Git Committed</h1>
-            <br></br>
+         
+            
             <div className="card-center"
             >
+                <SwiperIcon />
+                <br></br>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
            
@@ -90,7 +93,8 @@ function SwipeCard({userProfiles, currentUser}) {
                     onSwipe={(dir) => swiped(dir, user.name)} 
                     onCardLeftScreen={(dir) => swipeDirection(dir, user.id)}
                     >
-                        <div style={{ backgroundImage: 'url(' + user.profile_photo + ')' }} className='card'>
+                        <div 
+                        style={{ backgroundImage: 'url(' + user.profile_photo + ')' }} className='card'>
                             <h2>{user.first_name}, {user.age}</h2>
                         </div>
                     </TinderCard>
@@ -112,14 +116,15 @@ function SwipeCard({userProfiles, currentUser}) {
                     </TinderCard> */}
                     </div>
                 ) : 
-                <h5>
+                <h5 
+                    className="card-center"
+                >
                     oops! you're out of people in the area 
                     </h5>  } 
                 
             </div>
-            <SwiperIcon />
-{/* 
-            {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} */}
+           
+
         </div>
         </>
     )

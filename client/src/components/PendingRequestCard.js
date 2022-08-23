@@ -72,7 +72,9 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
               key={match.id}
               id={match.id}
             >       
-              <img sx={{overflow: "auto"}}              
+              <img 
+              // sx={{overflow: "auto" }}
+                         
                 src={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format`}
                 srcSet={`${match.receiver.profile_photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={match.receiver.name}

@@ -53,6 +53,7 @@ function App() {
     setUser(null)
   }
 
+  console.log(editDetails)
   // setting the state for User Profile page from the GET request to show a specific user when clicked 
   function handleSelectedMatch(selectedMatch){
     setSelectedMatch(selectedMatch)

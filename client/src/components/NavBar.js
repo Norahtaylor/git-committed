@@ -125,7 +125,7 @@ const NavBar = ({ onLogout }) => {
                         Your Match Requests
                     </a>
                 </MenuItem>
-                <MenuItem>
+                {/* <MenuItem>
                     <a 
                         onClick={() => history.push('/login')} 
                         href="/login"
@@ -133,7 +133,7 @@ const NavBar = ({ onLogout }) => {
                     >
                         Login
                     </a> 
-                </MenuItem>
+                </MenuItem> */}
              <div>
                 <Button 
                     onClick={() =>handleLogout()}
