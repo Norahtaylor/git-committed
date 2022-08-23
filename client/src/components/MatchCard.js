@@ -131,7 +131,9 @@ function handleInfoClick(match) {
                   }
                 </div>
               )
-              ) : <ErrorPage history={history} />
+              ) : 
+            
+               <ErrorPage history={history} />
               }            
           </ImageList>  
         </div>       

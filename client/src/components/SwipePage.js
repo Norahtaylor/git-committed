@@ -3,6 +3,7 @@ import TinderCard from 'react-tinder-card'
 import SwipeCard from './SwipeCard'
 import NavBar from './NavBar'
 import MyMatches from './MyMatches'
+import Footer from './Footer'
 
 const SwipePage = ({onLogout, currentUser}) => {
     const [userProfiles, setUserProfiles] = useState([])
@@ -30,6 +31,7 @@ const SwipePage = ({onLogout, currentUser}) => {
     return(
         <div>
            <SwipeCard currentUser={currentUser} userProfiles={userProfiles} />
+           <Footer />
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import {useState, useEffect } from 'react'
 import PendingApprovalCard from './PendingApprovalCard'
+import Footer from './Footer'
 
 function PendingApproval({currentUser}) {
     const [pendingApproval, setPendingApproval] = useState([])
@@ -21,6 +22,7 @@ function PendingApproval({currentUser}) {
   return (
     <div>
           <PendingApprovalCard pendingApproval={pendingApproval} user={currentUser} />
+          <Footer />
     </div>
   )
 }
