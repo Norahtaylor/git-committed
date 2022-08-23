@@ -9,12 +9,14 @@ import PendingApproval from './components/PendingApproval';
 import PendingRequests from './components/PendingRequests';
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter,useHistory } from "react-router-dom";
-import MatchCard from './components/MatchCard';
+import UserProfile from './components/UserProfile';
 
 
 function App() {
   const [user, setUser] = useState({})
   const history = useHistory()
+  const [selectedMatch, setSelectedMatch] = useState({})
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     fetch('/me').then((res) => {
@@ -24,17 +26,25 @@ function App() {
     })
   }, [])
 
-  //when i go to my matches it loses the currentUser 
-  console.log("currentUser", user)
+
+  // dependency to handle changes on useEffects
+  function updateCard() {
+    setUpdate(!update)
+  }
 
   function onLogin(user){
     setUser(user)
   }
 
-  function onLogout(){
+  function onLogout(user){
     setUser(null)
-
   }
+
+  //this is setting the state for User Profile page from the GET request to show a specific user when clicked 
+  function handleSelectedMatch(selectedMatch){
+    setSelectedMatch(selectedMatch)
+  }
+  console.log(selectedMatch)
 
     // if(!user) {
     //   history.push('/login')
@@ -43,7 +53,7 @@ function App() {
   return (
     <div> 
       {user && user.username ? 
-        <NavBar onLogout={onLogout}/> 
+        <NavBar user={user} setUser={setUser} onLogout={onLogout}/> 
       : 
       null}
 
@@ -70,16 +80,18 @@ function App() {
         </Route>
 
         <Route exact path= "/mymatches">
-          <MyMatches currentUser={user}  />
+            <MyMatches updateCard={updateCard} update={update} setUpdate={setUpdate} handleSelectedMatch={handleSelectedMatch} currentUser={user}  />
         </Route>
             <Route exact path="/pendingapproval">
-              <PendingApproval currentUser={user} />
+            <PendingApproval currentUser={user} />
         </Route>
         <Route exact path='/pendingrequests'> 
-            <PendingRequests currentUser={user} />
+            <PendingRequests updateCard={updateCard} update={update} setUpdate={setUpdate} currentUser={user} />
+        </Route>
+        <Route exact path='/userprofile/:id'> 
+              <UserProfile user={user} match={selectedMatch} />
         </Route>
 
-        
       </Switch>
     </div>
   </BrowserRouter>

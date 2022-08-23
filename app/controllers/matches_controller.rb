@@ -5,6 +5,11 @@ class MatchesController < ApplicationController
         render json: matches.to_json(include: [:requestor, :receiver])
     end 
 
+    def show 
+        match = Match.find_by(id: params[:id])
+        render json: match, status: :ok
+    end 
+
     def create 
         match = Match.create!(match_params)
         render json: match, status: :ok

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get '/findlove', to: 'user_accounts#show_interested'
 
+  # delete '/mymatches/:id', to: 'matches#delete_match'
+
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }

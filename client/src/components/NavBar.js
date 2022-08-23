@@ -20,15 +20,17 @@ const NavBar = ({ onLogout }) => {
         setAnchorEl(null);
     };
 
+    function goBackHome(){
+        history.push('/login')
+    }
 
     function handleLogout() {
         fetch('./logout', {
             method: 'DELETE',
-        }).then(() => onLogout())
+        }).then(onLogout())
+        // .then(goBackHome)
         // .then(history.push('/login'))
     }
-
-
 
 
     return (

@@ -4,6 +4,7 @@ import GitCommittedCard from './GitCommittedCard'
 import TinderCard from 'react-tinder-card'
 import { useRouteMatch } from 'react-router-dom'
 import SwiperIcon from './SwiperIcon'
+import ErrorPage from './ErrorPage'
 
 function SwipeCard({userProfiles, currentUser}) {
     const [lastDirection, setLastDirection] = useState()
@@ -65,21 +66,23 @@ function SwipeCard({userProfiles, currentUser}) {
     //logic for determining swipe left or right to make a match
     //right swipe make post request with accepted: true
 
-    //left swipe POST request with accepted: false 
+    // how to share that we ran out of matches? and display the error page?
 
     return (
         <>
-        <h1 className='h1-card'
+        <h1 
+        // className='h1-card'
+            className='form-box-h5'
         >
             Git Committed</h1>
             <div className="card-center"
             >
-            
+
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
            
             <div className='cardContainer'>
-                {userProfiles.map((user) =>
+                { userProfiles.length > 0 ? userProfiles.map((user) =>
                     <TinderCard className='swipe' 
                     key={user.id} 
                     id={user.id}
@@ -91,12 +94,15 @@ function SwipeCard({userProfiles, currentUser}) {
                             <h2>{user.first_name}, {user.age}</h2>
                         </div>
                     </TinderCard>
-                )} 
+                ) : 
+                <h5>
+                    oops! you're out of people in the area 
+                    </h5>  } 
                 
             </div>
             <SwiperIcon />
-
-            {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
+{/* 
+            {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} */}
         </div>
         </>
     )

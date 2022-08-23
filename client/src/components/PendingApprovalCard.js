@@ -2,6 +2,7 @@ import {useRef, useMemo, useState} from 'react'
 import TinderCard from 'react-tinder-card'
 import { useRouteMatch } from 'react-router-dom'
 import SwiperIcon from './SwiperIcon'
+import ErrorPage from './ErrorPage'
 
 
 function PendingApprovalCard({ pendingApproval, user }) {
@@ -55,7 +56,7 @@ function PendingApprovalCard({ pendingApproval, user }) {
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
            
             <div className='cardContainer'>
-                  {pendingApproval.map((match) =>
+                  { pendingApproval.length > 0 ? pendingApproval.map((match) =>
                     <TinderCard className='swipe' 
                     key={match.id} 
                     id={match.id}
@@ -67,7 +68,8 @@ function PendingApprovalCard({ pendingApproval, user }) {
                             <h2>{match.requestor.first_name}, {match.requestor.age}</h2>
                         </div>
                     </TinderCard>
-                )} 
+                ) : <ErrorPage />
+                } 
                 
             </div>
             <SwiperIcon />

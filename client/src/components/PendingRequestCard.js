@@ -6,28 +6,26 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ErrorPage from './ErrorPage'
 
-function PendingRequests({requests, currentUser}) {
+function PendingRequests({ updateCard, requests, setRequests, currentUser}) {
   const [click, setClick] = useState()
 
   function handleInfoClick(){
     setClick(!click)
   }
 
-  function handleDelete(id) {
-    console.log(id)
+  // function updateCard() {
+  //   setUpdate(!update)
+  // }
+
+  function handleDelete(match) {
+
     console.log("i was clicked")
-    fetch(`/matches/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        requestor_id: null,
-        status: "",
-        accepted: false
-      })
-    })
+    fetch(`/matches/${match.id}`, {
+      method: "DELETE",
+      
+    }).then(() => updateCard())
   }
 
   return (
@@ -35,7 +33,7 @@ function PendingRequests({requests, currentUser}) {
 
       <div > 
       <h5 className='form-box-h5'
-      > Match Requests You Sent </h5>
+      > Unrequited love</h5>
         <label className='label'>
           Patience is a virtue.
         </label>
@@ -63,9 +61,7 @@ function PendingRequests({requests, currentUser}) {
 
             cols={2}>
             <ListSubheader
-              //   sx={{ color: "white",
-              //   backgroundColor: "#EB0F59" 
-              // }}
+            
               component="div"
             >
             
@@ -94,11 +90,12 @@ function PendingRequests({requests, currentUser}) {
               />
 
               
-              {click ? <ImageListItemBar
+                { click ?
+               <ImageListItemBar
                 onClick={handleInfoClick}
                 title={`"${match.receiver.bio}"`}
-                subtitle={`💻 ${match.receiver.education}, ${match.receiver.language}`}
-
+                subtitle={`💻   ${match.receiver.education}, ${match.receiver.language}`}
+                
                 actionIcon={
                   <>
                   <IconButton
@@ -110,10 +107,14 @@ function PendingRequests({requests, currentUser}) {
                  
                  
                   </IconButton>
-                  {/* <IconButton aria-label="delete">
-                    <DeleteIcon id ={match.id} onClick={ (id) => handleDelete(id) }/>
-                  </IconButton>  */}
+                  <IconButton 
+                      sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                      aria-label="delete">
+                    <DeleteIcon id ={match.id} onClick={ () => handleDelete(match) }/>
+                  </IconButton> 
+
                   </>
+
                 }
               /> :  
               <ImageListItemBar
@@ -135,7 +136,7 @@ function PendingRequests({requests, currentUser}) {
               /> }
             </ImageListItem>
           )
-          ) : null
+          ) : <ErrorPage  />
           }
         </ImageList>
 

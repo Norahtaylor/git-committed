@@ -3,8 +3,6 @@ import DeleteButtonMyProfile from './DeleteButtonMyProfile'
 
 function MyProfile({user, setUser}) {
 
-  console.log(user.language)
-
   return (
     <>
     <div>

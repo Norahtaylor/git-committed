@@ -17,7 +17,7 @@ function PendingApproval({currentUser}) {
             })
     }, [])
 
-    console.log("hello")
+    console.log("hello", pendingApproval)
   return (
     <div>
           <PendingApprovalCard pendingApproval={pendingApproval} user={currentUser} />
