@@ -10,6 +10,7 @@ import PendingRequests from './components/PendingRequests';
 import {useState, useEffect} from 'react';
 import { Switch, Router, Route, BrowserRouter,useHistory } from "react-router-dom";
 import UserProfile from './components/UserProfile';
+import EditProfile from './components/EditProfile';
 
 
 function App() {
@@ -17,6 +18,19 @@ function App() {
   const history = useHistory()
   const [selectedMatch, setSelectedMatch] = useState({})
   const [update, setUpdate] = useState(false)
+  const [editDetails, setEditDetails] = useState({
+    first_name: "",
+    age: "",
+    location: "",
+    hometown: "",
+
+    education: "",
+    bio: "",
+    gender: "",
+    interested_in: "",
+    language: "",
+    profile_photo: "",
+  })
 
   useEffect(() => {
     fetch('/me').then((res) => {
@@ -61,7 +75,7 @@ function App() {
     <div className='App'>
       <Switch>
         <Route exact path="/myprofile">
-            <MyProfile user={user} setUser={setUser} />
+            <MyProfile editDetails={editDetails} setEditDetails={setEditDetails} user={user} setUser={setUser} />
         </Route>
         <Route exact path="/createProfile">
             <CreateNewProfile setUser={setUser} currentUser={user} />
@@ -89,7 +103,10 @@ function App() {
             <PendingRequests updateCard={updateCard} update={update} setUpdate={setUpdate} currentUser={user} />
         </Route>
         <Route exact path='/userprofile/:id'> 
-              <UserProfile user={user} match={selectedMatch} />
+          <UserProfile user={user} match={selectedMatch} />
+        </Route>
+        <Route exact path='/editprofile/:id'>
+            <EditProfile user={user} editDetails={editDetails} setEditDetails={setEditDetails} />
         </Route>
 
       </Switch>

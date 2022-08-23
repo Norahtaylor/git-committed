@@ -9,6 +9,8 @@ import ErrorPage from './ErrorPage'
 function SwipeCard({userProfiles, currentUser}) {
     const [lastDirection, setLastDirection] = useState()
     //this is saying which direction someone swiped. 
+    const [isShown, setIsShown] = useState(false)
+    //Tinder card hover
 
     const swiped = (direction, nameToDelete) => {
         console.log('removing:' + nameToDelete)
@@ -83,6 +85,7 @@ function SwipeCard({userProfiles, currentUser}) {
            
             <div className='cardContainer'>
                 { userProfiles.length > 0 ? userProfiles.map((user) =>
+                <div>
                     <TinderCard className='swipe' 
                     key={user.id} 
                     id={user.id}
@@ -94,6 +97,23 @@ function SwipeCard({userProfiles, currentUser}) {
                             <h2>{user.first_name}, {user.age}</h2>
                         </div>
                     </TinderCard>
+                    {/* <TinderCard 
+                    onMouseEnter={() => setIsShown(true)}
+                    onMouseLeave={() => setIsShown(false)}
+                        className='swipe'
+                            key={user.id}
+                            id={user.id}
+                            preventSwipe={['up', 'down']}
+                    >
+                        {isShown ? (
+                                <div >
+                                    <h2 >{user.bio}</h2>
+                                </div>
+                        ) : null }
+                       
+
+                    </TinderCard> */}
+                    </div>
                 ) : 
                 <h5>
                     oops! you're out of people in the area 

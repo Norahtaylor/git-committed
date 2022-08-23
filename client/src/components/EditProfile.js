@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import Practice from './Practice'
 
 
-function EditProfile({ currentUser, setUser }) {
+function EditProfile({ user, editDetails, setEditDetails  }) {
     const [count, setCount] = useState(1)
     const history = useHistory();
     const [form, setForm] = useState({
@@ -30,35 +30,31 @@ function EditProfile({ currentUser, setUser }) {
         language: "",
         profile_photo: "",
     })
-
-
-
     const [error, setError] = useState()
 
-    console.log(currentUser)
-    console.log(form)
+     console.log(editDetails)
 
     function handleSubmit(e) {
-        e.preventDefault()
+       e.preventDefault()
         //POST REQUEST TO CREATE PROFILE
 
-        fetch(`/user_accounts/${currentUser.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(
-                form
-            )
+    //     fetch(`/user_accounts/${user.id}`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(
+    //             form
+    //         )
 
-        })
-            .then(res => res.json())
-            .then((user) => setUser(user))
+    //     })
+    //         .then(res => res.json())
+    //         .then((user) => setUser(user))
 
-        console.log(currentUser)
-        history.push('/myprofile')
+    //     console.log(user)
+    //     history.push('/myprofile')
 
-    }
+     }
 
     function handleNextClick() {
         setCount((count) => count + 1)
@@ -109,7 +105,7 @@ function EditProfile({ currentUser, setUser }) {
                                 aria-describedby='my-helper-text'
                                 name="first_name"
                                 onChange={updateForm}
-                                value={form.first_name}
+                                value={editDetails.first_name}
                             />
                             <FormHelperText id='my-helper-text'
                             >
@@ -124,7 +120,7 @@ function EditProfile({ currentUser, setUser }) {
                                 aria-describedby='my-helper-text'
                                 name="age"
                                 onChange={updateForm}
-                                value={form.age}
+                                value={editDetails.age}
                             />
                             <FormHelperText id='my-helper-text'
                             >
@@ -140,7 +136,7 @@ function EditProfile({ currentUser, setUser }) {
                                 aria-describedby='my-helper-text'
                                 name="location"
                                 onChange={updateForm}
-                                value={form.location}
+                                value={editDetails.location}
                             />
                             <FormHelperText id='my-helper-text'
                             >
@@ -154,7 +150,7 @@ function EditProfile({ currentUser, setUser }) {
                                 id="my-input"
                                 aria-describedby='my-helper-text'
                                 name="hometown"
-                                value={form.hometown}
+                                value={editDetails.hometown}
                                 onChange={updateForm}
                             />
                             <FormHelperText id='my-helper-text'
@@ -198,7 +194,7 @@ function EditProfile({ currentUser, setUser }) {
                                 id="my-input"
                                 aria-describedby='my-helper-text'
                                 name="education"
-                                value={form.education}
+                                value={editDetails.education}
                                 onChange={updateForm}
                             />
                             <FormHelperText id='my-helper-text'
@@ -212,7 +208,7 @@ function EditProfile({ currentUser, setUser }) {
                                 id="my-input"
                                 aria-describedby='my-helper-text'
                                 name="language"
-                                value={form.language}
+                                value={editDetails.language}
                                 onChange={updateForm}
                             />
                             <FormHelperText id='my-helper-text'
@@ -229,7 +225,7 @@ function EditProfile({ currentUser, setUser }) {
                                 id="my-input"
                                 aria-describedby='my-helper-text'
                                 name="bio"
-                                value={form.bio}
+                                value={editDetails.bio}
                                 onChange={updateForm}
                             />
                             <FormHelperText id='my-helper-text'
@@ -244,7 +240,7 @@ function EditProfile({ currentUser, setUser }) {
                                 id="my-input"
                                 aria-describedby='my-helper-text'
                                 name="profile_photo"
-                                value={form.profile_photo}
+                                value={editDetails.profile_photo}
                                 onChange={updateForm}
                             />
                             <FormHelperText id='my-helper-text'

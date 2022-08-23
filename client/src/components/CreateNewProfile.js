@@ -1,18 +1,10 @@
 import {useState} from 'react'
 import { useHistory } from "react-router-dom"
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import FormHelperText from '@mui/material/FormHelperText'
-import TextField from '@mui/material/TextField';
-import Form from './Form.css';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Practice from './Practice'
-
 
 function CreateNewProfile({currentUser, setUser}) {
     const [count, setCount] = useState(1)
@@ -30,13 +22,7 @@ function CreateNewProfile({currentUser, setUser}) {
         language: "",
         profile_photo: "",
     })
-
-
-
     const [error, setError] = useState()
-
-    console.log(currentUser)
-    console.log(form)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -59,6 +45,7 @@ function CreateNewProfile({currentUser, setUser}) {
         history.push('/myprofile')
      
     }
+
 
     function handleNextClick() {
         setCount((count) => count+ 1)       
@@ -169,7 +156,7 @@ function CreateNewProfile({currentUser, setUser}) {
                         setCount((count) => count- 1) )
                         }
                         > 
-                        {console.log(count)}
+                    
                         PREV 
                     </button>
                     <button 

@@ -1,7 +1,31 @@
 import {useState} from 'react'
 import DeleteButtonMyProfile from './DeleteButtonMyProfile'
+import {useHistory} from 'react-router-dom'
+import EditProfile from './EditProfile'
 
-function MyProfile({user, setUser}) {
+function MyProfile({user, editDetails, setEditDetails, setUser}) {
+  
+  let history = useHistory()
+
+  //Fetch request for Edit form auto fill 
+  function editPost() {
+    // setEditId(post_id)
+    fetch(`/user_accounts/${user.id}`)
+      .then(res => res.json())
+      .then(user => setEditDetails({
+        first_name: user.first_name,
+        age: user.age,
+        location: user.hometown,
+        location: user.location,
+        gender: user.gender,
+        interested_in: user.interested_in,
+        bio: user.bio,
+        education: user.education,
+        profile_photo: user.profile_photo,
+        language: user.language
+      }))
+    history.push(`/editprofile/${user.id}`)
+  }
 
   return (
     <>
@@ -100,7 +124,11 @@ function MyProfile({user, setUser}) {
                 >
                   Bio: {user.bio}</p>
                 <br></br>
-                <button type="button "className='ghost-profile'>Edit Profile</button>
+                <button type="button"
+                className='ghost-profile'
+                onClick={editPost}
+                >
+                  Edit Profile</button>
                 <br></br>
                 <DeleteButtonMyProfile 
                   setUser={setUser} user={user} 

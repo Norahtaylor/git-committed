@@ -68,10 +68,12 @@ function PendingApprovalCard({ pendingApproval, user }) {
                             <h2>{match.requestor.first_name}, {match.requestor.age}</h2>
                         </div>
                     </TinderCard>
-                ) : <ErrorPage />
-                } 
-                
+                ) : 
+                <div style={{alignItems: "center"}}><ErrorPage /> </div>
+            } 
             </div>
+                
+        
             <SwiperIcon />
 
             {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
