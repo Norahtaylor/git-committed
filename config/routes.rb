@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy'
 
-  get '/mymatches', to: 'matches#my_matches'
+  get '/thematches', to: 'matches#my_matches'
 
-  get '/pendingapproval', to: 'matches#pending_approval'
+  get '/pendingtheapproval', to: 'matches#pending_approval'
 
   get '/yourrequests', to: 'matches#requested'
 

@@ -7,7 +7,7 @@ function PendingApproval({currentUser}) {
     const [errors, setErrors] = useState()
 
     useEffect(() => {
-        fetch('/pendingapproval')
+        fetch('/pendingtheapproval')
             .then((r) => {
                 if (r.ok) {
                     r.json().then((pendingApproval) => setPendingApproval(pendingApproval))
