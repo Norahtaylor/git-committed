@@ -45,9 +45,9 @@ function PendingApprovalCard({ pendingApproval, user }) {
     <>
 
           <h5 className='form-box-h5'
-          >  Matches Pending Your Approval </h5>
+          >  People who swiped right on me </h5>
           <label className='label'>
-              They swiped right on you!
+              
           </label>
             <div className="card-center"
             >
@@ -76,6 +76,7 @@ function PendingApprovalCard({ pendingApproval, user }) {
                 className='card-center'
                 // overflow:"hidden"
                 >
+                   <h5></h5>
                 <button
                     onClick={() => history.push('/swipe')}
                 >
