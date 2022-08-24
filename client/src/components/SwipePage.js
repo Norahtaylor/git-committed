@@ -29,9 +29,14 @@ const SwipePage = ({onLogout, currentUser}) => {
     //setting a dependency for currentUser 
 
     return(
-        <div>
+        <div style={{
+            backgroundSize: "cover",
+            height: "1000px",
+        }} 
+        
+        >
            <SwipeCard currentUser={currentUser} userProfiles={userProfiles} />
-           <Footer />
+           {/* <Footer /> */}
         </div>
     )
 }

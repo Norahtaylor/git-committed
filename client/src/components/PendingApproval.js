@@ -20,9 +20,17 @@ function PendingApproval({currentUser}) {
 
     console.log("hello", pendingApproval)
   return (
-    <div>
+    <div 
+        style={{
+            //   backgroundImage: 'url(https://images.unsplash.com/photo-1619963258837-b83f3406cfcd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)',
+            //   backgroundImage: `url(https://images.unsplash.com/photo-1620503292890-c597f62cce8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)`,
+              height: "1000px",
+             backgroundSize: "cover"
+
+        }}
+    >
           <PendingApprovalCard pendingApproval={pendingApproval} user={currentUser} />
-          <Footer />
+  
     </div>
   )
 }

@@ -91,7 +91,7 @@ const Homepage = ({setUser}) =>  {
                             Sign Up</button>
                             <br></br>
                         <div style={{color: "red"}}>
-                            <br></br>
+   <br></br>
                             {errors.map(error => (
                                 <div key={error}>{error}</div>))}
                         </div>

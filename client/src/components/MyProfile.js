@@ -38,10 +38,6 @@ function MyProfile({user, editDetails, setEditDetails, setUser}) {
          My Profile</h1>
       
     </div>
-
-
-
-<br></br>
 <br></br>
      <div className='homepage-profile'>
 
@@ -139,7 +135,7 @@ function MyProfile({user, editDetails, setEditDetails, setUser}) {
                     </div>
                 </div>
             </div>
-<Footer />
+
            
 
         </div>

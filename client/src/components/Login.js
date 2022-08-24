@@ -41,7 +41,12 @@ console.log(errors)
         <div className='homepage'>
             <div className="container" id="container">
                 <div className="form-container ">
-                    <form onSubmit={handleSubmit}className="sign-in-container" action="#">
+                    <form onSubmit={handleSubmit}className="create-container" 
+                    style={{
+                            width: "70%",
+                            paddingTop: "22%"
+
+                    }}>
                         <h1 className="signup-h1">Login</h1>
                         <input className="signup-input" 
                         value={username}
