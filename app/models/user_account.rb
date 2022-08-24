@@ -2,7 +2,7 @@ class UserAccount < ApplicationRecord
     # has_one :user_profile, dependent: :destroy
     has_secure_password 
     
-    validates :username, uniqueness: true
+    # validates :username, uniqueness: true
     # validates :password, presence: true
     validates :username, presence: true
 

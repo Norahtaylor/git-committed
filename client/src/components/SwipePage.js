@@ -30,7 +30,7 @@ const SwipePage = ({onLogout, currentUser}) => {
 
     return(
         <div style={{
-            backgroundSize: "cover",
+             backgroundSize: "cover",
             height: "1000px",
         }} 
         

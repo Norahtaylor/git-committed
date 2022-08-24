@@ -43,13 +43,16 @@ function MyProfile({user, editDetails, setEditDetails, setUser}) {
 
             <div className="container-profile" id="container">
                 <div className="form-container-profile">
-                    <form className="sign-in-container-profile " 
+                    <form 
+                    className="sign-in-container-profile " 
                     >
                         <img className=''
                           src={user.profile_photo} 
                           style={{
                             width:"100%",
                             justifyContent: "center",
+                            backgroundSize: "cover",
+                            background:"black"
                            
                           }}
                         />

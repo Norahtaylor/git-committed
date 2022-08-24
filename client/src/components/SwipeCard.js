@@ -31,9 +31,9 @@ function SwipeCard({userProfiles, currentUser}) {
     }
 
    const swipeDirection = (dir, id) => {
-    // console.log("i swiped:", dir)
-    // console.log("current user", currentUser.id)
-    // console.log("swiped on user id", id)
+    console.log("i swiped:", dir)
+    console.log("current user", currentUser.id)
+    console.log("swiped on user id", id)
 
     if(dir === 'right')
         fetch('/matches', {

@@ -74,7 +74,7 @@ function PendingApprovalCard({ pendingApproval, user }) {
                 ) : 
                 <div 
                 className='card-center'
-                // overflow:"hidden"
+                
                 >
                    <h5></h5>
                 <button
