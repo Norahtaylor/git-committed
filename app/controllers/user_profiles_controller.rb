@@ -1,9 +1,9 @@
-# class UserProfilesController < ApplicationController
+class UserProfilesController < ApplicationController
 
-#     def index 
-#         user = UserProfile.all
-#         render json: user, status: :ok 
-#     end 
+    def index 
+        user = UserProfile.all
+        render json: user, status: :ok 
+    end 
 
 #     def update 
 #         user = UserProfile.find_by(id: params[:id])
@@ -22,4 +22,5 @@
 #         params.permit(:name, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location, :user_account_id)
 #     end
     
-# end
+
+end
