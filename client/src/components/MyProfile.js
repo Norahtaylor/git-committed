@@ -2,6 +2,7 @@ import {useState} from 'react'
 import DeleteButtonMyProfile from './DeleteButtonMyProfile'
 import {useHistory} from 'react-router-dom'
 import EditProfile from './EditProfile'
+import Footer from './Footer'
 
 function MyProfile({user, editDetails, setEditDetails, setUser}) {
   
@@ -138,7 +139,7 @@ function MyProfile({user, editDetails, setEditDetails, setUser}) {
                     </div>
                 </div>
             </div>
-
+<Footer />
            
 
         </div>

@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 import FormHelperText from '@mui/material/FormHelperText'
 import Practice from './Practice'
+import Footer from './Footer'
 
 function CreateNewProfile({currentUser, setUser}) {
     const [count, setCount] = useState(1)
@@ -274,7 +275,7 @@ function CreateNewProfile({currentUser, setUser}) {
                     }
                 </div>
 
-        
+            <Footer />
     </div>
   
   )

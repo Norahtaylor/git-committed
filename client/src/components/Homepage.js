@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory} from "react-router-dom";
+import Footer from './Footer';
 
 const Homepage = ({setUser}) =>  {
     const [username, setUsername] = useState('')
@@ -16,10 +17,6 @@ const Homepage = ({setUser}) =>  {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("username:", username)
-        console.log("password:", password)
-        console.log("first:", firstName)
-        console.log("last:", lastName)
 
         fetch('/signup', {
             method: "POST",
@@ -46,8 +43,6 @@ const Homepage = ({setUser}) =>  {
         setFirstName('')
         setLastName('')
     }
-
-
 
     return (
         <div className='homepage'>
@@ -94,7 +89,9 @@ const Homepage = ({setUser}) =>  {
                       
                         className='button'>
                             Sign Up</button>
+                            <br></br>
                         <div style={{color: "red"}}>
+                            <br></br>
                             {errors.map(error => (
                                 <div key={error}>{error}</div>))}
                         </div>
@@ -114,7 +111,7 @@ const Homepage = ({setUser}) =>  {
             </div>
 
            
-
+<Footer />
         </div>
     )
 }

@@ -1,5 +1,6 @@
 class UserAccountsController < ApplicationController
-     rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    # rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
     def index 
         user = UserAccount.all
@@ -7,10 +8,6 @@ class UserAccountsController < ApplicationController
     end 
 
     #all the attributes are setter and getter methods thats why you can call them on class
-# for current user === requestor_id
-#     UserAccount.joins(UserAccount.id === Match.receiver_id).Match.where(status: "null")
-
-#     if UserAccount.receivers
 
     def show_interested
         user = UserAccount.find_by(id: session[:user_id])
@@ -53,11 +50,12 @@ class UserAccountsController < ApplicationController
     end 
 
     def destroy 
-        user = UserAccount.find_by(id: params[:id])
+        user = UserAccount.find(params[:id])
         user.destroy 
         head :no_content
     end 
 
+    #SIGNUP, this is getting the correct errors from ApplicationController
     def create 
         user = UserAccount.create!(user_params)
         user.valid? 
@@ -76,12 +74,16 @@ class UserAccountsController < ApplicationController
         render json: user
     end 
 
-
 private 
 
-    def not_found 
-        render json: {error: "Record Not Found"}, status: :not_found
-    end 
+
+    # def not_found 
+    #     render json: {error: "Record Not Found"}, status: :not_found
+    # end 
+
+    #  def invalid_record(invalid)
+    #     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    # end 
 
     def user_params
         params.permit(:first_name, :last_name, :username, :password, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location, :language)

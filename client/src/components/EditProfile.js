@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import EditProfile2 from './EditProfile2'
+import Footer from './Footer'
 
 
 function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
@@ -266,7 +267,7 @@ function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
                 }
             </div>
 
-
+            <Footer />
         </div>
 
     )

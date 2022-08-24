@@ -11,6 +11,7 @@ import {useState, useEffect} from 'react';
 import { Switch, Route, BrowserRouter,useHistory } from "react-router-dom";
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
+import Footer from './components/Footer'
 
 function App() {
   const [user, setUser] = useState({})
@@ -102,9 +103,12 @@ function App() {
         <Route exact path='/editprofile/:id'>
             <EditProfile user={user} setUser={setUser} editDetails={editDetails} setEditDetails={setEditDetails} />
         </Route>
+        <Route>
+        </Route>
 
       </Switch>
     </div>
+          {/* <Footer /> */}
   </BrowserRouter>
 
     </div>

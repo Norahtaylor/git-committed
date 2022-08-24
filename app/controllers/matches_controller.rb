@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
     end 
 
     def show 
-        match = Match.find_by(id: params[:id])
+        match = Match.find(params[:id])
         render json: match, status: :ok
     end 
 
@@ -16,7 +16,7 @@ class MatchesController < ApplicationController
     end 
 
     def update
-        match= Match.find_by(id: params[:id])
+        match= Match.find(params[:id])
         if match 
             match.update(match_params)
             render json: match, status: :ok
@@ -26,7 +26,7 @@ class MatchesController < ApplicationController
     end 
 
      def destroy
-        match= Match.find_by(id: params[:id])
+        match= Match.find(params[:id])
         if match 
             match.destroy
             head :no_content
@@ -40,6 +40,7 @@ class MatchesController < ApplicationController
         matches = Match.where(receiver_id: session[:user_id], status: "accepted", accepted: true).or(Match.where(requestor_id: session[:user_id], status: "accepted", accepted: true))
 
         render json: matches.to_json(:include => [:requestor, :receiver]) 
+
  
     end
 
