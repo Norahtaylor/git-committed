@@ -32,7 +32,8 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
     <>
       <div > 
       <h5 className='form-box-h5'
-      > Unrequited love</h5>
+      > People I've swiped right on
+      </h5>
         <label className='label'>
           Patience is a virtue.
         </label>

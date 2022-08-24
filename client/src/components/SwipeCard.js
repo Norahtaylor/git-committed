@@ -2,7 +2,7 @@ import React from 'react'
 import { useRef, useMemo, useState } from 'react'
 import GitCommittedCard from './GitCommittedCard'
 import TinderCard from 'react-tinder-card'
-import { useRouteMatch } from 'react-router-dom'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 import SwiperIcon from './SwiperIcon'
 import ErrorPage from './ErrorPage'
 
@@ -11,6 +11,7 @@ function SwipeCard({userProfiles, currentUser}) {
     //this is saying which direction someone swiped. 
     const [isShown, setIsShown] = useState(false)
     //Tinder card hover
+    let history = useHistory()
 
     const swiped = (dir, user) => {
         console.log('removing:', user)
@@ -118,11 +119,19 @@ function SwipeCard({userProfiles, currentUser}) {
                     </TinderCard> */}
                     </div>
                 ) : 
+                <>
                 <h5 
                     className="card-center"
                 >
                     oops! you're out of people in the area 
-                    </h5>  } 
+                    </h5>  
+                    <br></br>
+                     {/* <button
+                    onClick={() => history.push('/mymatches')}
+                >
+                    Take me to my matches</button> */}
+               </>
+                } 
                 
             </div>
            
