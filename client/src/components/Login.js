@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import NavBar from './NavBar';
+import Footer from './Footer';
 
 
 function Login({ setUser, user, onLogin }) {
     let navigate = useHistory()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState([])
+     const [errors, setErrors] = useState([])
 
     function navigateLogin() {
         navigate.push("/")
     }
-
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -31,7 +30,8 @@ function Login({ setUser, user, onLogin }) {
                 if (r.ok) {
                     r.json().then((user) => onLogin(user))
                     navigate.push('/swipe')
-                } else {
+                } 
+                else {
                     r.json().then((err) => setErrors(err.errors))
                 }
             }) }
@@ -43,7 +43,6 @@ console.log(errors)
                 <div className="form-container ">
                     <form onSubmit={handleSubmit}className="sign-in-container" action="#">
                         <h1 className="signup-h1">Login</h1>
-                        {/* <input className="signup-input" type="text" placeholder="First Name" /> */}
                         <input className="signup-input" 
                         value={username}
                         onChange={e => setUsername(e.target.value)}
@@ -56,9 +55,9 @@ console.log(errors)
                         placeholder="Password" />
                         <button className='button'>Login</button>
                         <div style={{ color: "red" }}>
-                            
-                            {/* {errors.map(error => (
-                                <div key={error}>{error}</div>))} */}
+                            <br></br>
+                            {errors}
+                          
                         </div>
                     </form>
                 </div>
@@ -75,7 +74,7 @@ console.log(errors)
                 </div>
             </div>
 
-
+                <Footer />
 
         </div>
     )
