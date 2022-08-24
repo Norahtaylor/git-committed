@@ -11,19 +11,17 @@ function SwipeCard({userProfiles, currentUser}) {
     //this is saying which direction someone swiped. 
     const [isShown, setIsShown] = useState(false)
     //Tinder card hover
-    const [currentIndex, setCurrentIndex] = useState(userProfiles.length-1 )
 
     const swiped = (dir, user) => {
         console.log('removing:', user)
         setLastDirection(dir)
-        console.log('direction:', {dir})
-        setCurrentIndex(currentIndex - 1)
+    
     }
 
     //how to remove the user that someone swiped on, do i need another column that saves them as already swiped on?
 
 
-    console.log(currentIndex)
+
     //after refresh, it shows -1
     // if currentIndex < 0 do not refresh and show the cards again
 
@@ -70,13 +68,17 @@ function SwipeCard({userProfiles, currentUser}) {
     return (
         <>
         <h1 
+        
         // className='h1-card'
             className='form-box-h5'
+                
         >
             Git Committed</h1>
          
             
-            <div className="card-center"
+            <div 
+                
+                className="card-center"
             >
                 <SwiperIcon />
                 <br></br>

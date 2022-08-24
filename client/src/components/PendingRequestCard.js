@@ -38,10 +38,12 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
         </label>
       </div>
        <div 
+        className="card-center"
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          overflow: "auto",
 
         }}
      
@@ -54,6 +56,7 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
             width: 900, height: 700,
             borderRadius: "5px",
             borderColor: "#EB0F59",
+            overflow: "scroll",
           }}
         >
           <ImageListItem key="header"
