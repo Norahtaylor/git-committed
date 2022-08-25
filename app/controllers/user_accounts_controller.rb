@@ -13,12 +13,11 @@ class UserAccountsController < ApplicationController
         user = UserAccount.find_by(id: session[:user_id])
 
          if (user.interested_in === "male")
-            accounts = UserAccount.where(gender:"male", interested_in: "male") 
+            accounts = UserAccount.where(gender:"male", interested_in: "male").or(UserAccount.where(gender: "male", interested_in: "everyone"))
              render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
            
-
          elsif (user.interested_in === "female")
-         users = UserAccount.where(gender:"female", interested_in: "female").or(UserAccount.where(gender: "non-binary", interested_in: "female")) 
+         users = UserAccount.where(gender:"female", interested_in: "female").or(UserAccount.where(gender: "non-binary", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone"))
          render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
          
          elsif (user.interested_in === "trans")
@@ -30,19 +29,19 @@ class UserAccountsController < ApplicationController
          render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
          elsif (user.interested_in === "bi" && user.gender === "male")
-           users= UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male")) 
+           users= UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male")).or(UserAccount.where(gender: "male", interested_in: "everyone"))
             render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
             
          elsif (user.interested_in === "bi" && user.gender === "female")
-            match = UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female"))
+            match = UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone"))
             render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id} 
 
          elsif (user.interested_in === "everyone" && user.gender === "male")
-            match = UserAccount.where(interested_in: "male") 
+            match = UserAccount.where(interested_in: "male").or(UserAccount.where(interested_in: "everyone"))
             render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
             
          else (user.interested_in === "everyone" && user.gender === "female")
-            match = UserAccount.where(interested_in: "female") 
+            match = UserAccount.where(interested_in: "female").or(UserAccount.where(interested_in: "everyone"))
             render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
          
         end 
