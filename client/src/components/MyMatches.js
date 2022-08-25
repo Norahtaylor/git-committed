@@ -10,7 +10,7 @@ export default function MyMatches({ currentUser, handleSelectedMatch, updateCard
 
 
 useEffect(() => {
-    fetch('/mymatches')
+    fetch('/thematches')
         .then(res => res.json())
         .then(matches => setMatches(matches))
 }, [update])

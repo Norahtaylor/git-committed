@@ -113,7 +113,7 @@ const NavBar = ({ onLogout }) => {
                         href="/pendingapproval"
                         className='menu-button'
                     >
-                        Pending Your Approval
+                        Pending My Approval
                     </a>
                 </MenuItem>
                 <MenuItem>
@@ -122,7 +122,7 @@ const NavBar = ({ onLogout }) => {
                         href="/pendingrequests"
                         className='menu-button'
                     >
-                        Your Match Requests
+                        My Match Requests
                     </a>
                 </MenuItem>
                 {/* <MenuItem>

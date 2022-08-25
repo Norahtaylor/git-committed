@@ -74,7 +74,7 @@ export default function MultipleSelect({ handleNextClick, updateForm, handleSubm
                 }}
                 id='my-helper-text'
                 >
-                    How do you indentify?
+                    How do you identify?
                 </FormHelperText>
             </FormControl> 
 
