@@ -80,7 +80,7 @@ function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
                 {count === 1 ? (  //when the page count is 1 show this 
                     <div className='field1'>
                         <label className='label'>
-                            Edit Your Profile
+                            Edit your profile
                         </label>
                         <FormControl>
                             <InputLabel htmlFor='my-input' >
@@ -169,7 +169,7 @@ function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
 
                     <div className='field1'>
                         <label className='label'>
-                            Edit your some details
+                            Edit the details
                         </label>
 
                         <FormControl>

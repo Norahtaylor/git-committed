@@ -61,7 +61,7 @@ export default function EditProfile2({ handleNextClick, editDetails, updateForm,
                 }}
                     id='my-helper-text'
                 >
-                    How do you indentify?
+                    How do you identify?
                 </FormHelperText>
             </FormControl>
 
