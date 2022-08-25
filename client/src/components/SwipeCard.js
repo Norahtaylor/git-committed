@@ -76,7 +76,7 @@ function SwipeCard({userProfiles, currentUser}) {
         >
             Git Committed</h1>
          
-            
+       
             <div 
                 
                 className="card-center"
@@ -85,7 +85,9 @@ function SwipeCard({userProfiles, currentUser}) {
                 <br></br>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-           
+           <br></br>
+           <br></br>
+
             <div className='cardContainer'>
                 { userProfiles.length > 0 ? userProfiles.map((user) =>
                 <div>

@@ -28,7 +28,7 @@ export default function EditProfile2({ handleNextClick, editDetails, updateForm,
     return (
         <div>
             <label className='label'>
-                Edit the personal details
+           
             </label>
 
             <FormControl sx={{ padding: 3, m: 1, width: 300 }}>

@@ -169,12 +169,14 @@ function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
 
                     <div className='field1'>
                         <label className='label'>
-                            Edit the details
+                           
                         </label>
+                        <br></br>
 
                         <FormControl>
                             <InputLabel htmlFor='my-input' >
                                 Education </InputLabel>
+                            
                             <Input
                                 id="my-input"
                                 aria-describedby='my-helper-text'
@@ -186,6 +188,7 @@ function EditProfile({ user, editDetails, setUser, setEditDetails  }) {
                             >
                                 Where did you go to school or coding bootcamp?</FormHelperText>
                         </FormControl>
+                       
                         <FormControl>
                             <InputLabel htmlFor='my-input' >
                                 Coding Language</InputLabel>

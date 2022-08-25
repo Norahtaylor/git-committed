@@ -28,6 +28,8 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
     }).then(() => updateCard())
   }
 
+  console.log(requests)
+
   return (
     <>
       <div > 
@@ -62,10 +64,10 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
         >
           <ImageListItem key="header"
 
-            cols={2}>
+cols={2}>
             <ListSubheader
             
-              component="div"
+            component="div"
             >
             
             </ListSubheader>
@@ -108,7 +110,7 @@ function PendingRequests({ updateCard, requests, handleSelectedMatch, setRequest
               /> 
             </ImageListItem>
           )
-          ) : <ErrorPage  />
+          ) : null
           }
         </ImageList>
 

@@ -18,6 +18,8 @@ function PendingRequests({currentUser, handleSelectedMatch, updateCard, update, 
                 }
             })
     }, [update])
+
+    console.log(requests)
     //whatever variable i set, anytime this variable changes use effect will rerun 
  
   return (
