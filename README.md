@@ -1,24 +1,16 @@
-# README
+Have you ever been swiping on a dating app and think, I wish there was a dating app for people in the tech industry? Well now there is! Introducing, Git Committed. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Git Committed brings the brightest and hottest minds of the tech industry together for the pleasure of your swiping. 
 
-Things you may want to cover:
+Our goal is to introduce you to future partners both in the bedroom and in the tech room. 
 
-* Ruby version
+Git Committed is am inclusive dating app for all. We value your dating interests and have the backend to support everyone's preferences and tastes. 
 
-* System dependencies
+* Deployed on Heroku
 
-* Configuration
+* Ruby on Rails 
 
-* Database creation
+* React.js
 
-* Database initialization
+* SQL
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
