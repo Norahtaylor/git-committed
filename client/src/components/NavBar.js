@@ -125,6 +125,15 @@ const NavBar = ({ onLogout }) => {
                         My Match Requests
                     </a>
                 </MenuItem>
+                <MenuItem>
+                    <a
+                        onClick={() => history.push('/messages')}
+                        href="/messages"
+                        className='menu-button'
+                    >
+                        Messages
+                    </a>
+                </MenuItem>
                 {/* <MenuItem>
                     <a 
                         onClick={() => history.push('/login')} 

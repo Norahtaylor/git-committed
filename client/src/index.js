@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ActionCableProvider } from 'react-actioncable-provider';
+import { API_WS_ROOT } from './constant';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ActionCableProvider 
+    url={API_WS_ROOT}
+  > 
+    <React.StrictMode>
+    {/* this cooresponds with the  /cable endpoint in backend  */}
+      <App />
+    </React.StrictMode>
+  </ActionCableProvider >
 );
 
 // If you want to start measuring performance in your app, pass a function

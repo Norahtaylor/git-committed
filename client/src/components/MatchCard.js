@@ -14,6 +14,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 function MatchCard({matches, handleSelectedMatch, setMatches, updateCard, user, update, setUpdate}) {
 let history = useHistory()
 
+//do i need to feed the current user and the matches info that the user clicked on through here into the chat room?
+
 //shows more info and takes you to User Profile page 
 //when i refresh, the page loses its state 
 //how to keep the state saved 
@@ -24,6 +26,8 @@ function handleInfoClick(match) {
     .then(handleSelectedMatch(match))
     history.push(`/userprofile/${match.id}`)
 }
+
+
   
 //Deletes the match 
   function handleMatchDelete(match) {

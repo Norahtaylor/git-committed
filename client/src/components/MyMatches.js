@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import MatchCard from './MatchCard';
 import PendingRequests from './PendingRequestCard';
+import Chat from './Chat'
 
 
 export default function MyMatches({ currentUser, handleSelectedMatch, updateCard, update }) {
@@ -18,12 +19,23 @@ useEffect(() => {
     
     return (
         <div>
-            <MatchCard user={currentUser} 
-            handleSelectedMatch={handleSelectedMatch} 
-            setMatches={setMatches} 
-            matches={matches} 
-            updateCard={updateCard}
+            <MatchCard 
+                user={currentUser} 
+                handleSelectedMatch={handleSelectedMatch} 
+                setMatches={setMatches} 
+                matches={matches} 
+                updateCard={updateCard}
             />
+
+            {/* <Chat 
+                user={currentUser}
+                handleSelectedMatch={handleSelectedMatch}
+                setMatches={setMatches}
+                matches={matches}
+                updateCard={updateCard}
+            /> */}
+
+
         </div>
     );
 }

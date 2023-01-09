@@ -12,6 +12,9 @@ import { Switch, Route, BrowserRouter,useHistory } from "react-router-dom";
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
 import Footer from './components/Footer'
+import Chat from './components/Chat'
+import ChatRoom from './components/ChatRoom';
+import ConversationsList from './components/ConversationsList';
 
 function App() {
   const [user, setUser] = useState({})
@@ -54,11 +57,13 @@ function App() {
     setUser(null)
   }
 
-  console.log(editDetails)
   // setting the state for User Profile page from the GET request to show a specific user when clicked 
   function handleSelectedMatch(selectedMatch){
     setSelectedMatch(selectedMatch)
   }
+
+  console.log(selectedMatch)
+  console.log(user)
 
   return (
     <div 
@@ -108,14 +113,23 @@ function App() {
             <PendingRequests handleSelectedMatch={handleSelectedMatch} updateCard={updateCard} update={update} setUpdate={setUpdate} currentUser={user} />
         </Route>
         <Route exact path='/userprofile/:id'> 
-          <UserProfile user={user} match={selectedMatch} />
+              <UserProfile handleSelectedMatch={handleSelectedMatch}
+              user={user} match={selectedMatch} />
         </Route>
         <Route exact path='/editprofile/:id'>
             <EditProfile user={user} setUser={setUser} editDetails={editDetails} setEditDetails={setEditDetails} />
         </Route>
-        <Route>
+        <Route exact path= '/chat'> 
+          <Chat />
         </Route>
-
+            <Route exact path= "/chatroom">
+              <ChatRoom 
+              match={selectedMatch}
+              user={user} />
+            </Route>
+        <Route exact path='/messages' >
+         <ConversationsList />
+        </Route>
       </Switch>
     </div>
           <Footer />

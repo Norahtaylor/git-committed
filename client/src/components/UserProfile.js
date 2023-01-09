@@ -2,9 +2,17 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 
 
-function UserProfile({ match, user }) {
+function UserProfile({ match, user, handleSelectedMatch }) {
     let navigate = useHistory()
 
+    function handleMessageMeClick(match){
+        // fetch(`/messages/${match.id}`)
+        // .then(res => res.json())
+        handleSelectedMatch(match)
+        navigate.push('/chatroom')
+    }
+
+    console.log("user profile page" + match)
   return (
       <> 
           <div>
@@ -14,7 +22,7 @@ function UserProfile({ match, user }) {
                       color: "#27182F"
                   }}
               >
-                  My Profile</h1>
+                  User Profile</h1>
 
           </div>
           <br></br>
@@ -99,11 +107,22 @@ function UserProfile({ match, user }) {
                                       >
                                           Bio: {match.receiver.bio}</p>
                                           <br></br>
-                            <button 
+                                          
+                                <button 
                                 className='ghost-profile' 
+                                type="button"
                                 onClick={() => navigate.push('/mymatches')}
                             >
                                 Back to Matches</button>
+                                
+                                <br></br>
+                                 <button 
+                                className='ghost-profile' 
+                                type="button"
+                                onClick={() => handleMessageMeClick(match)}
+                            >
+                                Message me!</button> 
+
                         </div>
                     </div>
                 </div>
@@ -189,6 +208,13 @@ function UserProfile({ match, user }) {
                                       <button className='ghost-profile' onClick={() => navigate.push('/mymatches')}
                                       >
                                         Back to Matches</button>
+                                        <br></br>
+                                      <button
+                                          className='ghost-profile'
+                                          type="button"
+                                          onClick={() => handleMessageMeClick(match)}
+                                      >
+                                          Message me!</button> 
                                   </div>
                               </div>
                           </div>

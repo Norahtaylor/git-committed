@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_24_114849) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_01_151740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.string "title"
+    t.integer "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "matches", force: :cascade do |t|
     t.integer "requestor_id"
@@ -22,6 +29,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_114849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_account_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "requestor_id"
+    t.integer "receiver_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "conversation_id"
   end
 
   create_table "user_accounts", force: :cascade do |t|

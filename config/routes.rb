@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  resources :messages
   resources :matches
   resources :user_profiles
   resources :user_accounts
+  resources :conversations, only: [:index, :create]
+  resources :messages, only: [:create, :show, :index]
+
+  # websockets use their own protocol, 
+  #/cable endpoint is used to start the websocket connection with the server 
+  mount ActionCable.server => '/cable'
+
   get '/hello', to: 'application#hello_world'
 
   # login and stay logged in
