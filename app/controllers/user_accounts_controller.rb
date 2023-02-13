@@ -7,43 +7,56 @@ class UserAccountsController < ApplicationController
         render json: user.to_json(include: [:requestors, :receivers])
     end 
 
-    #all the attributes are setter and getter methods thats why you can call them on class
-
+  
+    # Logic for dating app Tinder-style swipe page 
     def show_interested
         user = UserAccount.find_by(id: session[:user_id])
 
-         if (user.interested_in === "male")
+        # Gay Men 
+         if (user.interested_in === "male" && user.gender === "male")
             accounts = UserAccount.where(gender:"male", interested_in: "male").or(UserAccount.where(gender: "male", interested_in: "everyone"))
+            # filter accounts user has already swiped on 
              render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
-           
-         elsif (user.interested_in === "female")
-         users = UserAccount.where(gender:"female", interested_in: "female").or(UserAccount.where(gender: "non-binary", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone"))
-         render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
-         
-         elsif (user.interested_in === "trans")
-           users= UserAccount.where(gender: "trans") 
-            render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
+        # Lesbians  
+         elsif (user.interested_in === "female" && user.gender === "female")
+            accounts = UserAccount.where(gender:"female", interested_in: "female").or(UserAccount.where(gender: "non-binary", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone"))
+             render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+         
+        # Straight Men 
+         elsif (user.interested_in === "female" && user.gender === "male")
+            accounts = UserAccount.where(gender:"female", interested_in: "male")
+             render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+
+        # Straight Women 
+         elsif (user.interested_in === "male" && user.gender === "female")
+            accounts = UserAccount.where(gender:"male", interested_in: "female")
+             render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+        
+        # non-binary interested in non-binary
          elsif (user.interested_in === "non-binary")
-         users = UserAccount.where(gender: "non-binary")
-         render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+         accounts = UserAccount.where(gender: "non-binary")
+         render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
+        # Bi Men  
          elsif (user.interested_in === "bi" && user.gender === "male")
-           users= UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male")).or(UserAccount.where(gender: "male", interested_in: "everyone"))
-            render json: users.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
-            
-         elsif (user.interested_in === "bi" && user.gender === "female")
-            match = UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone"))
-            render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id} 
+           accounts = UserAccount.where(gender: "male", interested_in: "male").or(UserAccount.where(gender: "female", interested_in: "male")).or(UserAccount.where(gender: "male", interested_in: "everyone")).or(UserAccount.where(gender: "non-binary", interested_in: "everyone"))
+            render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
 
+        # Bi Women     
+         elsif (user.interested_in === "bi" && user.gender === "female")
+            accounts = UserAccount.where(gender: "female", interested_in: "female").or(UserAccount.where(gender: "male", interested_in: "female")).or(UserAccount.where(gender: "female", interested_in: "everyone")).or(UserAccount.where(gender: "non-binary", interested_in: "everyone"))
+            render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id} 
+
+        # Men interested in everyone    
          elsif (user.interested_in === "everyone" && user.gender === "male")
-            match = UserAccount.where(interested_in: "male").or(UserAccount.where(interested_in: "everyone"))
-            render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
-            
+            accounts = UserAccount.where(interested_in: "male").or(UserAccount.where(interested_in: "everyone"))
+            render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
+
+        # Women interested in everyone    
          else (user.interested_in === "everyone" && user.gender === "female")
-            match = UserAccount.where(interested_in: "female").or(UserAccount.where(interested_in: "everyone"))
-            render json: match.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
-         
+            accounts = UserAccount.where(interested_in: "female").or(UserAccount.where(interested_in: "everyone"))
+            render json: accounts.filter{ |ele| ele unless user.receivers.ids.include? ele.id}
         end 
     end
 

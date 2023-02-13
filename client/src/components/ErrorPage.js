@@ -4,12 +4,20 @@ import {useHistory} from 'react-router-dom'
 function ErrorPage({history}) {
     history = useHistory()
   return (
-    <div className="card-center">
+    <div 
+    className="card-center"
+      style={{
+         display: "column",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      <button onClick={() => history.push('/swipe')}>Take me to find love</button>
         <div
           //  className='no-matches'
         >
               
-              <iframe src="https://giphy.com/embed/QB78LMb32YqoE" 
+              {/* <iframe src="https://giphy.com/embed/QB78LMb32YqoE" 
               width="480" 
               height="326" 
               frameBorder="0" 
@@ -18,11 +26,11 @@ function ErrorPage({history}) {
               justifyContent= "center"
 
               allowFullScreen>
-                </iframe>
-                <p>
+                </iframe> */}
+                {/* <p>
                     <a href="https://giphy.com/gifs/sad-crying-james-van-der-beek-QB78LMb32YqoE">
                     </a>
-                </p>
+                </p> */}
           
 
           <button onClick={() => history.push('/swipe')}>Take me to find love</button>
