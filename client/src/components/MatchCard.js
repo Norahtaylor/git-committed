@@ -15,8 +15,7 @@ function MatchCard({matches, handleSelectedMatch, setMatches, updateCard, user, 
 let history = useHistory()
 
 //shows more info and takes you to User Profile page 
-//when i refresh, the page loses its state 
-//how to keep the state saved 
+
 
 function handleInfoClick(match) {
   fetch(`/matches/${match.id}`)
@@ -131,7 +130,8 @@ function handleInfoClick(match) {
                   }
                 </div>
               )
-              ) : 
+              ) 
+              : 
             
                <ErrorPage history={history} />
               }            
