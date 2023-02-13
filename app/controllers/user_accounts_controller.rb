@@ -1,6 +1,6 @@
 class UserAccountsController < ApplicationController
-    # rescue_from ActiveRecord::RecordNotFound, with: :not_found
-    # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
     def index 
         user = UserAccount.all
@@ -93,13 +93,13 @@ class UserAccountsController < ApplicationController
 private 
 
 
-    # def not_found 
-    #     render json: {error: "Record Not Found"}, status: :not_found
-    # end 
+    def not_found 
+        render json: {error: "Record Not Found"}, status: :not_found
+    end 
 
-    #  def invalid_record(invalid)
-    #     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
-    # end 
+     def invalid_record(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end 
 
     def user_params
         params.permit(:first_name, :last_name, :username, :password, :age, :birthday, :gender, :interested_in, :bio, :education, :hometown, :profile_photo, :location, :language)
